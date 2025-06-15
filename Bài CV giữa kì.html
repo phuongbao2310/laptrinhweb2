@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Cá Nhân - Lê Nguyễn Nhật Duy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/CV.css">
+</head>
+<body>
+
+    <nav class="cv-nav-icons">
+        <div class="nav-links-group">
+            <a href="#personal-info" title="Thông tin cá nhân"><i class="fas fa-user"></i></a>
+            <a href="#hobbies" title="Sở thích"><i class="fas fa-heart"></i></a>
+            <a href="#education" title="Học vấn"><i class="fas fa-graduation-cap"></i></a>
+            <a href="#skills" title="Kỹ năng"><i class="fas fa-tools"></i></a>
+            <a href="#projects" title="Dự án"><i class="fas fa-project-diagram"></i></a>
+        </div>
+        
+        <div class="theme-switch-wrapper"> 
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider round"></div>
+            </label>
+            <span class="theme-text">Dark Mode</span>
+        </div>
+    </nav>
+
+    <div class="main-layout-wrapper">
+
+        <div class="personal-info-column" id="personal-info">
+            <div class="profile-header">
+                <div class="profile-photo-wrapper">
+                    <img class="profile-photo-main" src="assets/images/ảnh(2).jpg" alt="Ảnh đại diện chính">
+                    <img class="profile-photo-hover" src="assets/images/ảnh(1).jpg" alt="Ảnh đại diện khi hover">
+                </div>
+                <a href="#" class="edit-icon-near-avatar" id="editCvIcon" title="Chỉnh sửa CV"><i class="fas fa-pen-to-square"></i></a>
+                
+                <h1 id="cvName">Lê Nguyễn Nhật Duy</h1> 
+                <p class="tagline" id="tagline-running-effect">Người con Miền Tây </p> 
+            </div>
+
+            <div class="contact-details">
+                <h2>Liên hệ</h2>
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> <span id="contactAddress">Quận 12, TP. Hồ Chí Minh, Việt Nam</span></p> 
+                <p><i class="fas fa-phone" style="margin-right: 8px;"></i> <span id="contactPhone">(84) 559 589 316</span></p> 
+                <p><i class="fas fa-envelope" style="margin-right: 8px;"></i> <a href="mailto:duylnn1177@ut.edu.vn" id="contactEmail">duylnn1177@ut.edu.vn</a></p> 
+                <div class="social-links">
+                    <a href="https://www.instagram.com/nhatduyleng/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/NhatDuy-25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.facebook.com/nhatduy.l.ng" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+
+            <div class="about-me" id="about-me-section"> 
+                <h2>Tóm tắt về tôi</h2>
+                <p id="aboutMeContent">Tôi là một sinh viên năng động với kinh nghiệm làm việc nhóm và kỹ năng giải quyết vấn đề. Tôi luôn tìm kiếm cơ hội học hỏi và phát triển bản thân trong lĩnh vực công nghệ.</p> 
+            </div>
+        </div>
+
+        <div class="scrollable-content-column">
+            
+            <section class="hobbies-section" id="hobbies">
+                <h2>Sở Thích</h2>
+                <ul>
+                    <li>Rất yêu bóng đá</li>
+                    <li>Chơi game</li>
+                    <li>Nghe nhạc</li>
+                    <li>Đi du lịch</li>
+                    <li>Real Madrid</li>
+                </ul>
+            </section>
+
+            <section class="section" id="education">
+                <h2>Học vấn</h2>
+                <div class="entry-item">
+                    <h3>Sinh Viên Trường Đại Học Giao Thông Vận Tải Thành Phố Hồ Chí Minh</h3>
+                    <p class="period">Sinh viên năm 2 chuyên ngành Công nghệ thông tin</p>
+                    <ul>
+                        <li>Cùng nhóm phát triển " Trang Web hẹn hò "</li>
+                        <li>Các khóa học nổi bật: Cấu trúc dữ liệu & Thuật toán, Lập trình hướng đối tượng, Lâp trình Web, Cơ sở dữ liệu.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section" id="skills">
+                <h2>Kỹ năng</h2>
+                <div class="skills-category">
+                    <h3>Ngôn ngữ lập trình</h3>
+                    <p>JavaScript, Python, Java, C++</p>
+                </div>
+                <div class="skills-category">
+                    <h3>Frameworks & Thư viện</h3>
+                    <p>ReactJS, Node.js, Express.js, jQuery, Bootstrap</p>
+                </div>
+                <div class="skills-category">
+                    <h3>Cơ sở dữ liệu</h3>
+                    <p>SQL Server, MySQL</p>
+                </div>
+                <div class="skills-category">
+                    <h3>Công cụ & Công nghệ</h3>
+                    <p>Git, GitHub, Docker, VS Code</p>
+                </div>
+                <div class="skills-category">
+                    <h3>Kỹ năng mềm</h3>
+                    <p>Làm việc nhóm, thuyết trình, và tự học</p>
+                </div>
+            </section>
+
+            <section class="section" id="projects">
+                <h2>Dự án</h2>
+                <div class="entry-item">
+                    <h3> Thiết kế trang Web cá nhân ( 2025 ) </h3>
+                    <p class="period">Lập trình Web</p>
+                    <ul>
+                        <li>Thiết kế trang cá nhân sinh viên </li>
+                        <li>Sử dụng MySQL, HTML, CSS và JavaScript để thực hiện dự án.</li>
+                    </ul>
+                    <div class="links">
+                        <a href="https://github.com/NhatDuy-25/Digital-CV.git" target="_blank" style="font-size: 1.7em;">Xem dự án</a>
+                    </div>
+                </div>
+                <div class="entry-item">
+                    <h3>Hiv-medical-service-system (2025) </h3>
+                    <p class="period">Lập trình Java</p>
+                    <ul>
+                        <li>Xây dựng một website tư vấn y tế, đặt lịch khám và chữa bệnh HIV.</li>
+                        <li>Sử dụng front-end, back-end, và MySQL.</li>
+                        <li>Tối ưu hóa SEO cơ bản và khả năng truy cập.</li>
+                    </ul>
+                    <div class="links">
+                        <a href="https://github.com/VinhPhus/hiv-medical-service-system.git" target="_blank" style="font-size: 1.7em;">Xem dự án</a>
+                    </div>
+                </div>
+            </section>
+
+        </div> 
+    </div> 
+
+    <div id="editCvModal" class="edit-modal-overlay">
+        <div class="edit-modal-content">
+            <button type="button" class="close-button">&times;</button>
+            <h2>Chỉnh sửa thông tin cá nhân</h2>
+            <form id="editCvForm">
+                <div class="form-group">
+                    <label for="editName">Họ và tên:</label>
+                    <input type="text" id="editName" name="editName" value="">
+                </div>
+                <div class="form-group">
+                    <label for="editTagline">Tagline:</label>
+                    <input type="text" id="editTagline" name="editTagline" value="">
+                </div>
+                <div class="form-group">
+                    <label for="editPhone">Điện thoại:</label>
+                    <input type="tel" id="editPhone" name="editPhone" value="">
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">Email:</label>
+                    <input type="email" id="editEmail" name="editEmail" value="">
+                </div>
+                <div class="form-group">
+                    <label for="editAddress">Địa chỉ:</label>
+                    <input type="text" id="editAddress" name="editAddress" value="">
+                </div>
+                <div class="form-group">
+                    <label for="editAboutMe">Về tôi:</label>
+                    <textarea id="editAboutMe" name="editAboutMe"></textarea>
+                </div>
+                <div class="modal-actions"> 
+                    <button type="button" class="cancel-btn">Hủy</button>
+                    <button type="submit" class="save-btn">Lưu Thay Đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/CV.js"></script>
+
+</body>
+</html>

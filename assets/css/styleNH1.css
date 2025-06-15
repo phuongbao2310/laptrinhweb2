@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    font-family: "Noto Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    /* Colors */
+    --body-color: #f9fafc;              /* Rất sáng, nhẹ */
+    --sidebar-color: #ffffff;           /* Trắng tinh */
+    --primary-color: #6366f1;           /* Indigo-500 */
+    --primary-color-light: #eef0ff;     /* Indigo-100 */
+    --toggle-color: #d1d5db;            /* Gray-300 */
+    --text-color: #374151;              /* Gray-700 */
+
+
+    /* Transition */
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
+body{
+    height: 100vh;
+    background: var(--body-color);
+    transition: var(--tran-02);
+}
+
+body.dark{
+    --body-color: #0f111a;               /* Màu nền chính: xanh đen rất tối */
+    --sidebar-color: #1a1c25;            /* Sidebar hơi sáng hơn */
+    --primary-color: #4fc3f7;            /* Màu nhấn: xanh dương sáng (cool, hiện đại) */
+    --primary-color-light: #263238;      /* Màu phụ cho hover hoặc box */
+    --toggle-color: #ffffff;             /* Nút toggle: trắng */
+    --text-color: #d0d9e1;               /* Màu chữ: trắng-xanh nhẹ */
+}
+html {
+  scroll-behavior: smooth;
+}

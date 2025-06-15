@@ -1,0 +1,285 @@
+/*======== Định dạng cho Phần "Trang chủ" (Home Section) ========*/
+
+/* Các kiểu cơ bản cho phần Trang chủ */
+.home-section {
+    position: relative;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);
+    background: var(--body-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--tran-05); /* Chuyển động mượt mà khi sidebar thay đổi */
+    margin-bottom: 56px;
+}
+
+/* Điều chỉnh vị trí phần Trang chủ khi sidebar đóng */
+.sidebar.close ~ .home-section {
+    left: 88px;
+    width: calc(100% - 88px);
+}
+
+/* Bố cục nội dung chính của Trang chủ (văn bản và ảnh đại diện) */
+.home-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+/* Kiểu dáng cho dòng "Hello" */
+.home-text .hello {
+    color: var(--primary-color);
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+/* Kiểu dáng cho dòng "Hello" trong dark mode */
+body.dark .home-text .hello {
+    color: yellow;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+/* Kiểu dáng cho tên */
+.home-text .name {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin: 10px 0 10px 0;
+    color: var(--text-color);
+}
+
+/* Kiểu dáng cho đoạn mô tả bản thân (hiệu ứng gõ chữ) */
+.home-text .desc {
+    color: var(--text-color);
+    margin-top: 10px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0; /* Bắt đầu với chiều rộng 0 */
+    animation:
+        typing 8s steps(20, end) infinite, /* Hiệu ứng gõ chữ */
+        blink-caret .75s step-end infinite; /* Hiệu ứng nháy con trỏ */
+}
+
+/* Con trỏ nháy trong dark mode */
+body.dark .home-text .desc {
+    --caret-blink-color: #FFFF00;
+    border-right-color: var(--caret-blink-color);
+}
+
+/* Khung chứa ảnh đại diện chính */
+.home-avatar {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hiệu ứng hào quang quanh ảnh đại diện */
+.avatar-glow {
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    /* Các thuộc tính glow cơ bản, có thể được tăng cường khi hover */
+    background: radial-gradient(circle, var(--primary-color) 0%, var(--body-color) 70%);
+    box-shadow: 0 0 40px 10px var(--primary-color);
+    padding: 8px; /* Để tạo khoảng trống cho glow */
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, border-color 0.4s ease-out;
+}
+
+/* Kiểu dáng cho ảnh đại diện */
+.home-avatar img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: none; /* Border được xử lý bởi avatar-glow */
+    position: relative;
+    z-index: 2;
+    clip-path: circle(50% at 50% 50%); /* Giữ nguyên hình tròn */
+    animation:
+        liquid-morph 10s ease-in-out infinite, /* Hiệu ứng biến dạng lỏng */
+        metal-shine-subtle 8s linear infinite; /* Hiệu ứng ánh kim loại tinh tế */
+    filter:
+        brightness(1.05)
+        contrast(1.1)
+        drop-shadow(0 0 8px rgba(0, 120, 220, 0.3)); /* Giảm cường độ shadow mặc định */
+    transition: transform 0.4s ease-out, filter 0.4s ease-out;
+}
+
+/* Hiệu ứng khi di chuột qua ảnh đại diện */
+.home-avatar:hover .avatar-glow {
+    transform: translateY(-8px) scale(1.05); /* Nhô lên và phóng to nhẹ vòng glow */
+    box-shadow: 0 12px 30px rgba(0, 150, 255, 0.5), 0 0 20px rgba(0, 150, 255, 0.8); /* Bóng đổ mạnh hơn */
+    border-color: var(--primary-color); /* Nếu có border */
+}
+
+/* Hiệu ứng filter cho ảnh đại diện khi di chuột qua */
+.home-avatar:hover img {
+    filter:
+        brightness(1.1)
+        contrast(1.1)
+        drop-shadow(0 0 15px rgba(0, 150, 255, 0.7)); /* Shadow của ảnh cũng mạnh hơn */
+}
+
+/* Tạm dừng animation của social-orbit-container khi hover */
+.home-avatar:hover .social-orbit-container,
+.social-orbit-container:hover {
+    animation-play-state: paused;
+}
+
+/* Lớp phản chiếu tinh tế cho ảnh đại diện */
+.home-avatar::before {
+    content: "";
+    position: absolute;
+    inset: -6px; /* Giảm kích thước */
+    background: linear-gradient(
+        45deg,
+        rgba(0, 162, 255, 0.4) 0%,
+        rgba(0, 102, 255, 0.3) 25%,
+        rgba(0, 255, 204, 0.2) 50%,
+        rgba(0, 153, 255, 0.3) 75%,
+        rgba(0, 51, 255, 0.4) 100%
+    );
+    background-size: 200% 200%; /* Giảm kích thước gradient */
+    z-index: 1;
+    border-radius: 50%;
+    filter: blur(8px); /* Giảm độ nhòe */
+    opacity: 0.5; /* Giảm độ đậm */
+    mix-blend-mode: soft-light; /* Chế độ hòa trộn mềm hơn */
+    animation: gradient-shift 12s ease infinite;
+}
+
+/* Hiệu ứng sóng tinh tế quanh ảnh đại diện */
+.home-avatar::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(80, 180, 220, 0.4) 0%,
+        transparent 70%
+    );
+    z-index: 3;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+/* Kích hoạt hiệu ứng sóng khi di chuột qua ảnh đại diện */
+.home-avatar:hover::after {
+    opacity: 0.5; /* Giảm độ rõ */
+    animation:
+        wave-pulse-subtle 3s ease-out infinite,
+        light-spin-slow 10s linear infinite;
+}
+
+/* Các liên kết mạng xã hội */
+.social-links {
+    margin-top: 18px;
+    display: flex;
+    gap: 20px; /* Khoảng cách giữa các icon */
+}
+
+/* Kiểu dáng cho từng icon mạng xã hội */
+.social-links a {
+    font-size: 2rem;
+    color: var(--text-color);
+    transition: color 0.2s, transform 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Hiệu ứng khi di chuột qua icon mạng xã hội */
+.social-links a:hover {
+    transform: translateY(-8px); /* Nhô lên khi hover */
+}
+
+/* Màu sắc riêng cho từng icon khi hover */
+.social-links a.github-icon:hover {
+    color: #980ead;
+}
+.social-links a.facebook-icon:hover {
+    color: #1877f3;
+}
+.social-links a.tiktok-icon:hover {
+    color: #000;
+}
+
+/* Tối ưu hóa cho Dark Mode */
+body.dark .home-avatar img {
+    filter:
+        brightness(1.05)
+        contrast(1.1)
+        drop-shadow(0 0 6px rgba(0, 100, 200, 0.4));
+}
+
+body.dark .home-avatar::before {
+    opacity: 0.4;
+}
+
+/* Keyframes cho ảnh đại diện trong phần Giới thiệu (About Section) */
+.about-avatar-large img {
+    animation: avatar-glow-pulse 4s ease-in-out infinite;
+    transition: transform 0.4s ease;
+}
+
+.about-avatar-large img:hover {
+    transform: scale(1.05);
+}
+
+/* Keyframes cho hiệu ứng nhấp nháy hào quang của ảnh đại diện */
+@keyframes avatar-glow-pulse {
+    0%, 100% { box-shadow: 0 0 24px var(--primary-color-light); }
+    50% { box-shadow: 0 0 36px var(--primary-color); }
+}
+
+/*======== Các Keyframes chính ========*/
+
+/* Hiệu ứng biến dạng lỏng cho ảnh */
+@keyframes liquid-morph {
+    0%, 100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        border-radius: 40% 60% 70% 30% / 60% 40% 30% 70%;
+        transform: scale(1.02) rotate(0.5deg); /* Giảm biến đổi */
+    }
+}
+
+/* Hiệu ứng ánh kim loại tinh tế */
+@keyframes metal-shine-subtle {
+    0%, 100% {
+        filter: brightness(1.1) contrast(1.15) drop-shadow(0 0 8px rgba(0, 120, 220, 0.5));
+    }
+    50% {
+        filter: brightness(1.15) contrast(1.2) drop-shadow(0 0 12px rgba(0, 150, 255, 0.6));
+    }
+}
+
+/* Hiệu ứng sóng nhấp nháy tinh tế */
+@keyframes wave-pulse-subtle {
+    0%, 100% { transform: scale(0.98); opacity: 0.5; }
+    50% { transform: scale(1.05); opacity: 0.3; }
+}
+
+/* Hiệu ứng quay chậm của ánh sáng */
+@keyframes light-spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Hiệu ứng gõ chữ */
+@keyframes typing {
+    0% { width: 0; }
+    30% { width: 100%; } /* Gõ nhanh hơn */
+    75% { width: 100%; } /* Dừng lâu hơn */
+    100% { width: 0; }
+}
+
+/* Keyframes cho hiệu ứng chuyển đổi gradient (được sử dụng trong ::before) */
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}

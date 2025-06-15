@@ -1,0 +1,1576 @@
+/* --- Import Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+/* --- CSS Variables (Biến CSS cho dễ quản lý) --- */
+:root {
+    --primary-bg: #1a1a1a; /* Nền chính rất tối */
+    --secondary-bg: #1a1a1a; /* Nền phụ hơi sáng hơn */
+    --text-light: #f0f0f0; /* Chữ sáng */
+    --text-dark: #b0b0b0; /* Chữ phụ, hơi xám */
+    --accent-color: #00bcd4; /* Màu xanh ngọc làm điểm nhấn */
+    --accent-color-light: #66e6ff; /* Màu xanh ngọc sáng hơn cho hiệu ứng glow */
+    --border-color: #444; /* Viền xám đậm */
+    --shadow-color: rgba(0, 0, 0, 0.8); /* Tăng độ đậm của shadow */
+    --hover-effect-duration: 0.2s; /* Giảm thời gian hover cho nhanh hơn */
+
+    /* Biến mới cho hiệu ứng ánh sáng */
+    --light-color: #ffffff; /* Màu ánh sáng */
+    --light-glow-color: rgba(255, 255, 255, 0.8); /* Màu ánh sáng loe ra */
+    --light-speed-duration: 2s; /* Tốc độ nhấp nháy nhanh hơn */
+
+    --sidebar-width: 250px; /* Độ rộng của sidebar */
+    --sidebar-transition-duration: 0.3s;
+   --primary-bg: #1a1a1a; /* Hoặc màu nền tổng thể của body nếu không phải đen */
+    --secondary-bg: #2a2a2a; /* Màu nền của sidebar và footer hiện tại */
+    --banner-full-bg-color: #333333; /* Màu đen của banner bạn muốn kéo dài */
+    --footer-full-bg-color: var(--secondary-bg); /* Màu xám tối của footer bạn muốn kéo dài */
+}
+/* --- Theme Switch Toggle --- */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+    justify-content: center; /* Căn giữa công tắc trong sidebar */
+    gap: 10px;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--accent-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.switch-label {
+    color: var(--text-dark);
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* Adjustments for switch in contrast mode */
+body.contrast-mode .slider {
+    background-color: #6c757d; /* Darker gray for off state in light mode */
+}
+body.contrast-mode input:checked + .slider {
+    background-color: var(--accent-color); /* Maintain accent color for on state */
+}
+/* Thêm các biến cho chế độ tương phản/sáng hơn */
+body.contrast-mode {
+    --primary-bg: #f8f8f8; /* Nền chính sáng */
+    --secondary-bg: #ffffff; /* Nền phụ rất sáng */
+    --text-light: #333333; /* Chữ tối */
+    --text-dark: #666666; /* Chữ phụ, hơi xám đậm */
+    --accent-color: #007bff; /* Màu xanh dương làm điểm nhấn (có thể giữ màu xanh ngọc nếu muốn) */
+    --accent-color-light: #6aa8ff; /* Màu xanh dương sáng hơn */
+    --border-color: #cccccc; /* Viền sáng */
+    --shadow-color: rgba(0, 0, 0, 0.2); /* Shadow nhẹ hơn */
+    --light-color: #000000; /* Ánh sáng đen (hoặc giữ trắng nếu muốn) */
+    --light-glow-color: rgba(0, 0, 0, 0.5); /* Loe đen */
+    --banner-full-bg-color: var(--primary-bg); /* Hoặc màu #cccccc nếu bạn muốn một màu xám khác cho banner tương phản */
+    --footer-full-bg-color: var(--secondary-bg); /* Hoặc màu #eeeeee nếu bạn muốn khác */
+}
+
+/* Điều chỉnh một số phần tử cụ thể trong contrast-mode nếu cần */
+body.contrast-mode .sidebar-nav {
+    border-right-color: var(--border-color);
+    box-shadow: 2px 0 10px var(--shadow-color);
+}
+
+body.contrast-mode .sidebar-avatar {
+    border-color: var(--text-dark); /* Viền avatar tối hơn */
+}
+
+body.contrast-mode .sidebar-nav .nav-links li a:hover {
+    background-color: var(--accent-color);
+    color: var(--secondary-bg); /* Chữ trên hover sáng hơn */
+}
+
+body.contrast-mode .sidebar-nav .nav-links li a:hover i {
+    color: var(--secondary-bg);
+}
+
+body.contrast-mode .section-card {
+    border-color: var(--border-color);
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+body.contrast-mode .about-item,
+body.contrast-mode .hobby-item,
+body.contrast-mode .skill-category,
+body.contrast-mode .project-item,
+body.contrast-mode .contact-info-item {
+    border-color: var(--border-color);
+    box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+body.contrast-mode .about-item:hover,
+body.contrast-mode .contact-info-item:hover {
+    background-color: #e0e0e0; /* Nền hover sáng hơn */
+}
+/* Điều chỉnh hiệu ứng ánh sáng trong contrast-mode */
+body.contrast-mode .light-sweep {
+    /* Có thể đổi màu thành đen để nổi bật trên nền sáng */
+    background: linear-gradient(to right, transparent, var(--text-light), transparent); /* Dùng màu chữ chính */
+    animation: flash-glow-animation-contrast var(--light-speed-duration) ease-in-out infinite alternate;
+}
+/* Trong file CSS của bạn */
+
+/* Điều chỉnh nút "Chế độ Chỉnh sửa" trong contrast-mode */
+body.contrast-mode .global-edit-btn {
+    background-color: #e0e0e0; /* Màu nền sáng hơn cho nút */
+    color: var(--text-dark);   /* Chữ màu tối */
+    border-color: #a0a0a0;     /* Viền màu xám đậm hơn */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Shadow nhẹ hơn */
+}
+
+body.contrast-mode .global-edit-btn:hover {
+    background-color: #d0d0d0; /* Nền hover sáng hơn một chút */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+body.contrast-mode .global-edit-btn.active {
+    background-color: var(--accent-color); /* Giữ màu accent cho trạng thái active */
+    color: var(--secondary-bg); /* Chữ sáng trên nền accent */
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.4); /* Shadow màu xanh cho trạng thái active */
+}
+
+body.contrast-mode .global-edit-btn.active:hover {
+    background-color: var(--accent-color-light); /* Màu accent sáng hơn khi hover active */
+}
+
+/* Các nút chỉnh sửa nhỏ hơn (edit-btn-section) nếu chúng cũng bị ảnh hưởng */
+body.contrast-mode .edit-btn-section {
+    background-color: var(--accent-color); /* Hoặc một màu khác nếu bạn muốn khác biệt */
+    color: var(--secondary-bg);
+}
+
+body.contrast-mode .edit-btn-section:hover {
+    background-color: var(--accent-color-light);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+}
+/* Trong file CSS của bạn */
+body.contrast-mode .project-item .project-tech-stack li {
+    background-color: #e9ecef; /* Nền sáng hơn */
+    color: var(--text-dark); /* Chữ tối hơn */
+    border: 1px solid #ced4da; /* Viền sáng hơn */
+}
+@keyframes flash-glow-animation-contrast {
+    0% {
+        opacity: 0.05;
+        height: 2px;
+        box-shadow: none;
+    }
+    50% {
+        opacity: 0.5; /* Giảm độ sáng loe */
+        height: 8px;
+        box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.3); /* Bóng đổ tối hơn */
+    }
+    100% {
+        opacity: 0.05;
+        height: 2px;
+        box-shadow: none;
+    }
+}
+/* Trong file CSS của bạn */
+body.contrast-mode .banner {
+
+}
+
+/* Điều chỉnh màu chữ và tagline trong banner cho chế độ tương phản */
+body.contrast-mode .banner-content h1,
+body.contrast-mode .banner-content .tagline {
+    color: var(--text-light); /* Đảm bảo chữ vẫn tối */
+    text-shadow: none; /* Bỏ shadow hoặc làm nhẹ hơn */
+}
+body.contrast-mode .hobby-item:hover {
+    background-color: var(--accent-color);
+    color: var(--secondary-bg);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.5); /* Blue shadow */
+}
+
+body.contrast-mode .hobby-item:hover p {
+    color: var(--secondary-bg);
+}
+
+body.contrast-mode .hobby-item:hover .icon-medium {
+    color: var(--secondary-bg);
+}
+
+body.contrast-mode .skill-list li {
+    background-color: #e9ecef; /* Nền skill tag sáng hơn */
+    border-color: #ced4da;
+    color: var(--text-dark);
+}
+
+body.contrast-mode .skill-list li:hover {
+    background-color: var(--accent-color);
+    color: var(--secondary-bg);
+    border-color: var(--accent-color);
+}
+
+body.contrast-mode .project-item:hover {
+    border-color: var(--accent-color);
+}
+
+body.contrast-mode .modal-content {
+    border-color: var(--border-color);
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+body.contrast-mode .add-new-item input[type="text"],
+body.contrast-mode .editable-hobby-item .hobby-text-input,
+body.contrast-mode .editable-project-item input[type="text"],
+body.contrast-mode .editable-project-item textarea,
+body.contrast-mode #iconSearchInput {
+    background-color: #e9ecef;
+    border-color: #ced4da;
+    color: var(--text-dark);
+}
+
+body.contrast-mode .icon-item {
+    background-color: #e9ecef;
+    color: var(--text-dark);
+}
+
+body.contrast-mode .icon-item:hover {
+    background-color: var(--accent-color);
+    color: var(--secondary-bg);
+}
+
+/* Điều chỉnh lại màu chữ h1, h2, h3 trong contrast-mode nếu cần, vì mặc định chúng dùng var(--text-light) */
+body.contrast-mode h1,
+body.contrast-mode h2,
+body.contrast-mode h3 {
+    color: var(--text-light); /* Đảm bảo chữ vẫn tối */
+    text-shadow: none; /* Bỏ shadow hoặc làm nhẹ hơn */
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text-light); /* Màu chữ mặc định */
+    overflow-x: hidden;
+    display: flex; /* Giữ để sidebar và main content nằm cạnh nhau */
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition cho chế độ tương phản */
+    position: relative;
+
+    background:
+        /* Lớp nền cho Banner (MÀU XÁM) */
+        linear-gradient(to bottom, var(--banner-full-bg-color) 0%, var(--banner-full-bg-color) 338px) top left / 100vw 338px no-repeat,
+        /* Lớp nền cho Footer (MÀU XÁM TỐI của footer) */
+        linear-gradient(to top, var(--footer-full-bg-color) 0%, var(--footer-full-bg-color) 60px) bottom left / 100vw 60px no-repeat,
+        /* Lớp nền mặc định cho phần còn lại của Body (phần giữa) */
+        var(--primary-bg);
+
+    background-attachment: fixed; /* Giữ các lớp nền cố định khi cuộn */
+}
+body::before {
+
+}
+
+body::after {
+   
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color var(--hover-effect-duration) ease-in-out;
+}
+
+a:hover {
+    color: var(--text-light);
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* Tăng độ đậm shadow chữ */
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* --- SIDEBAR MENU (New) --- */
+.sidebar-nav {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width); /* Đảm bảo chiều rộng không thay đổi */
+    height: 100vh; /* Full viewport height */
+    position: fixed; /* Cố định */
+    top: 0;
+    left: 0;
+    background-color: var(--secondary-bg);
+    border-right: 2px solid var(--border-color);
+    box-shadow: 2px 0 10px var(--shadow-color);
+    padding: 20px;
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000; /* Luôn nằm trên cùng */
+    transition: transform var(--sidebar-transition-duration) ease-in-out; /* For responsive slide */
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+}
+
+.sidebar-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--text-light);
+    object-fit: cover;
+    margin-bottom: 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.sidebar-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent-color-light);
+}
+
+.sidebar-header h2 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    color: var(--text-light);
+}
+
+.sidebar-header p {
+    font-size: 0.9em;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.sidebar-nav .nav-links {
+    flex-grow: 1; /* Để chiếm không gian còn lại */
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-nav .nav-links li a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 1.05em;
+    border-radius: 8px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.sidebar-nav .nav-links li a i {
+    font-size: 1.2em;
+    color: var(--accent-color);
+    transition: color 0.2s ease-in-out;
+}
+
+.sidebar-nav .nav-links li a:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    text-decoration: none; /* Remove underline on hover for sidebar */
+}
+
+.sidebar-nav .nav-links li a:hover i {
+    color: var(--primary-bg);
+}
+
+.sidebar-footer {
+    width: 100%;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.sidebar-footer a {
+    color: var(--text-dark);
+    font-size: 1.8em;
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.sidebar-footer a:hover {
+    color: var(--accent-color-light);
+    transform: translateY(-3px) scale(1.1);
+}
+
+/* Toggle button for sidebar on smaller screens */
+.toggle-sidebar-btn {
+    display: none; /* Hidden by default, shown on mobile */
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    z-index: 1002; /* Above sidebar */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    transition: background-color 0.2s ease-in-out;
+}
+.toggle-sidebar-btn:hover {
+    background-color: var(--accent-color-light);
+}
+
+
+/* --- Main Content Wrapper --- */
+.main-content-wrapper {
+    flex-grow: 1; /* Cho phép nó mở rộng để chiếm không gian còn lại */
+    margin-left: var(--sidebar-width); /* Đẩy nội dung chính sang phải bằng chiều rộng sidebar */
+    transition: margin-left var(--sidebar-transition-duration) ease-in-out; /* For responsive slide */
+    position: relative; /* Có thể không cần thiết cho mục đích này nhưng an toàn để giữ */
+    z-index: 1; /* Đảm bảo nội dung chính nằm trên nền giả */
+}
+
+/* --- HEADER (Banner Only) --- */
+.header {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    background-color: transparent;
+}
+
+/* Cập nhật CSS cho Banner và Avatar lớn */
+.banner {
+    /*background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/banner-bg.jpg') center center/cover no-repeat;*/
+    padding: 80px 0; /* Điều chỉnh padding cho phù hợp với avatar lớn hơn */
+    text-align: center;
+    
+    position: relative;
+    overflow: hidden;
+    min-height: auto; /* Cho phép banner tự điều chỉnh chiều cao */
+    display: flex; /* Để căn giữa nội dung theo chiều dọc */
+    flex-direction: column; /* Để avatar, tên và tagline xếp dọc */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    width: 100%; /* Đảm bảo nội dung chiếm hết chiều ngang */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Avatar lớn trong banner */
+.profile-avatar-large {
+    width: 180px; /* Kích thước lớn hơn */
+    height: 180px; /* Kích thước lớn hơn */
+    border-radius: 50%;
+    border: 5px solid var(--text-light); /* Viền dày hơn */
+    object-fit: cover;
+    margin-bottom: 20px; /* Khoảng cách với tên */
+    box-shadow: 0 8px 20px var(--shadow-color); /* Bóng đổ nổi bật hơn */
+    transition: transform 0.3s ease-in-out;
+    z-index: 3; /* Đảm bảo nằm trên hiệu ứng ánh sáng */
+}
+
+.profile-avatar-large:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--accent-color-light);
+}
+
+.banner-content h1 {
+    font-size: 3em; /* Điều chỉnh kích thước chữ nếu cần */
+    margin-top: 0; /* Đảm bảo khoảng cách phía trên */
+    margin-bottom: 10px;
+}
+
+.banner-content .tagline {
+    font-size: 1.2em; /* Điều chỉnh kích thước chữ nếu cần */
+}
+
+/* --- HIỆU ỨNG ÁNH SÁNG NHẤP NHÁY --- */
+
+/* --- Main Content Layout --- */
+.main-sections {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.section-card {
+    background-color: var(--secondary-bg);
+    margin-bottom: 40px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative; /* Dùng cho hiệu ứng fade-in */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+}
+
+.section-title {
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block; /* Quan trọng để gạch chân kéo dài hết chữ */
+    padding-bottom: 10px; /* Khoảng cách giữa chữ và gạch chân */
+    color: var(--accent-color);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Gạch chân kéo dài hết chữ */
+    height: 4px;
+    background: linear-gradient(to right, var(--accent-color), var(--text-light));
+    border-radius: 2px;
+}
+
+/* --- Nút chỉnh sửa (Edit Buttons) CŨ - Giờ bị ẩn mặc định --- */
+/* (Các nút này giờ sẽ được ẩn và chỉ hiện ra khi ở chế độ chỉnh sửa) */
+.edit-btn-section { /* Thay thế cho .edit-btn, .edit-btn-center */
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background-color var(--hover-effect-duration) ease-in-out, transform 0.2s ease-in-out;
+    margin-top: 10px;
+    display: none; /* Mặc định ẩn */
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.edit-btn-section:hover {
+    background-color: var(--accent-color-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 188, 212, 0.4);
+}
+
+/* Nút "Chế độ Chỉnh sửa" toàn cục */
+.global-edit-controls {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    position: sticky; /* Cố định khi cuộn */
+    top: 10px; /* Khoảng cách từ trên cùng */
+    z-index: 900; /* Nằm trên các section, dưới sidebar */
+}
+
+.global-edit-btn {
+    background-color: #555; /* Màu xám trầm hơn */
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.global-edit-btn:hover {
+    background-color: #666;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+
+.global-edit-btn.active {
+    background-color: var(--accent-color); /* Sáng hơn khi đang ở chế độ chỉnh sửa */
+    color: var(--primary-bg);
+    box-shadow: 0 0 15px var(--accent-color-light);
+}
+
+.global-edit-btn.active:hover {
+    background-color: var(--accent-color-light);
+}
+
+
+.edit-mode-actions {
+    display: none; /* Mặc định ẩn, sẽ hiện khi vào edit mode */
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* --- Thông tin cá nhân --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.about-item {
+    background-color: var(--primary-bg);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    transition: background-color var(--hover-effect-duration) ease-in-out, transform var(--hover-effect-duration) ease-in-out;
+    display: flex; /* Để căn giữa nội dung và nút edit */
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Đẩy nút xuống dưới nếu có nhiều nội dung */
+}
+
+.about-item:hover {
+    background-color: #3a3a3a;
+    transform: translateY(-5px);
+}
+
+.about-item .icon-large {
+    font-size: 2.5em;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.about-item h3 {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    color: var(--text-light);
+}
+
+.about-item p {
+    font-size: 1em;
+    color: var(--text-dark);
+    margin-bottom: 0; /* Đặt về 0 để không ảnh hưởng đến vị trí nút */
+}
+
+/* --- Mục tiêu nghề nghiệp --- */
+.career-goal {
+    font-size: 1.15em;
+    line-height: 1.8;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-dark);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Thêm shadow nhẹ cho text */
+}
+
+/* --- Sở thích --- */
+.hobbies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hobby-item {
+    background-color: var(--primary-bg);
+    padding: 20px 30px;
+    border-radius: 50px; /* Bo tròn như nút */
+    border: 1px solid var(--border-color);
+    text-align: center;
+    min-width: 120px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    transition: all var(--hover-effect-duration) ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Cho phép nút chỉnh sửa nhỏ nằm ở đây */
+}
+
+.hobby-item:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 5px 15px var(--accent-color);
+}
+
+.hobby-item:hover p {
+    color: var(--primary-bg);
+}
+
+.hobby-item .icon-medium {
+    font-size: 1.8em;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    transition: color var(--hover-effect-duration) ease-in-out;
+}
+
+.hobby-item:hover .icon-medium {
+    color: var(--primary-bg);
+}
+
+.hobby-item p {
+    font-size: 1em;
+    color: var(--text-light);
+    margin-bottom: 0;
+}
+
+/* --- Kỹ năng --- */
+.skills-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-around;
+}
+
+.skill-category {
+    flex: 1;
+    min-width: 280px;
+    background-color: var(--primary-bg);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    display: flex; /* Để căn giữa nội dung và nút edit */
+    flex-direction: column;
+    align-items: center;
+}
+
+.skill-category h3 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    text-align: center;
+}
+
+.skill-category h3 i {
+    margin-right: 10px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px; /* Khoảng cách với nút edit */
+}
+
+.skill-list li {
+    background-color: #3a3a3a;
+    color: var(--text-light);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    border: 1px solid #555;
+    transition: background-color var(--hover-effect-duration) ease-in-out, transform 0.2s ease-in-out;
+    position: relative; /* For delete button positioning */
+}
+
+.skill-list li:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    transform: scale(1.05);
+    border-color: var(--accent-color);
+}
+
+/* Delete button for skills (only visible in edit mode) */
+.delete-skill-btn {
+    background: none;
+    border: none;
+    color: #dc3545; /* Red color for delete */
+    font-size: 1.1em;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 5px;
+    opacity: 0; /* Default hidden */
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Only show delete button when parent li is hovered AND in edit mode */
+.edit-mode-active .skill-list li:hover .delete-skill-btn {
+    opacity: 1;
+}
+
+.delete-skill-btn:hover {
+    color: #ff001a;
+}
+
+/* Add new skill div (only visible in edit mode) */
+.skill-category .add-skill-div {
+    display: none; /* Mặc định ẩn */
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%; /* Take full width of category */
+}
+.skill-category .add-skill-div input {
+    flex-grow: 1;
+    min-width: 150px;
+}
+
+/* --- Dự án --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-item {
+    background-color: var(--primary-bg);
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 20px var(--shadow-color);
+    transition: transform var(--hover-effect-duration) ease-in-out, box-shadow var(--hover-effect-duration) ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Căn nội dung sang trái */
+    position: relative; /* Để nút edit có thể được định vị */
+}
+
+.project-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+    border-color: var(--accent-color);
+}
+
+.project-item h3 {
+    font-size: 1.5em;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.project-item .project-role {
+    font-size: 1em;
+    color: var(--text-dark);
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.project-item .project-description {
+    font-size: 0.95em;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    flex-grow: 1; /* Để mô tả đẩy nút xuống dưới */
+}
+
+.project-item .project-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.project-item .project-tech-stack li {
+    background-color: #3a3a3a;
+    color: var(--text-light);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.85em;
+    border: 1px solid #555;
+}
+
+.btn-project {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color var(--hover-effect-duration) ease-in-out, transform 0.2s ease-in-out;
+    margin-top: auto; /* Đẩy nút xuống cuối thẻ */
+    align-self: flex-start; /* Căn nút sang trái */
+    margin-bottom: 0; /* Reset margin-bottom để không ảnh hưởng đến nút edit */
+}
+
+.btn-project:hover {
+    background-color: var(--text-light);
+    transform: translateY(-3px);
+    text-decoration: none;
+}
+
+.btn-project i {
+    margin-left: 8px;
+}
+
+/* Disabled link in edit mode */
+.btn-project.disabled-link-in-edit {
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: default;
+    background-color: #555;
+    box-shadow: none;
+}
+
+
+/* --- Liên hệ --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.contact-info-item {
+    background-color: var(--primary-bg);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    transition: background-color var(--hover-effect-duration) ease-in-out, transform var(--hover-effect-duration) ease-in-out;
+    display: flex; /* Để căn giữa nội dung và nút edit */
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contact-info-item:hover {
+    background-color: #3a3a3a;
+    transform: translateY(-5px);
+}
+
+.contact-info-item .icon-large {
+    font-size: 2.5em;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.contact-info-item h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.contact-info-item a,
+.contact-info-item span {
+    font-size: 1em;
+    color: var(--text-dark);
+    word-wrap: break-word; /* Đảm bảo text không tràn */
+    display: block; /* Để link hoặc span chiếm hết chiều rộng */
+    margin-bottom: 5px; /* Khoảng cách giữa các dòng info */
+}
+
+.contact-info-item a:hover {
+    text-decoration: underline;
+    color: var(--accent-color);
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: transparent;
+    padding: 20px 0;
+    text-align: center;
+    border-top: none;
+    color: var(--text-dark);
+    font-size: 0.9em;
+}
+
+/* --- Styles for editable fields and Save/Cancel buttons --- */
+.editable-field {
+    border: 1px dashed var(--accent-color);
+    padding: 2px 5px;
+    background-color: rgba(0, 188, 212, 0.05); /* Rất mờ */
+    border-radius: 3px;
+    outline: none; /* Remove default outline */
+    transition: background-color 0.1s ease-in-out;
+    min-width: 50px; /* Ensure editable fields are visible even if empty */
+}
+
+.editable-field:focus {
+    background-color: rgba(0, 188, 212, 0.1); /* Brighter on focus */
+}
+
+/* Styles for Save and Cancel buttons (general) */
+.save-btn, .cancel-btn {
+    color: var(--primary-bg);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background-color var(--hover-effect-duration) ease-in-out, transform 0.2s ease-in-out;
+    margin-top: 0; /* Reset margin */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.save-btn {
+    background-color: #28a745; /* A distinct green for save */
+}
+
+.save-btn:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+}
+
+.cancel-btn {
+    background-color: #dc3545; /* A distinct red for cancel */
+}
+
+.cancel-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.4);
+}
+
+/* --- MODAL STYLES (for Hobbies and Icon Picker) --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+    backdrop-filter: blur(5px); /* Blur background */
+    -webkit-backdrop-filter: blur(5px); /* Safari support */
+}
+
+.modal-content {
+    background-color: var(--secondary-bg);
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    width: 80%; /* Could be more specific like max-width: 700px */
+    max-width: 700px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px var(--shadow-color);
+    position: relative;
+    color: var(--text-light);
+    animation: fadeInModal 0.3s ease-out;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-button {
+    color: var(--text-dark);
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.modal h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--accent-color);
+    font-size: 1.8em;
+}
+
+/* Editable List in Modal */
+.editable-list {
+    max-height: 300px; /* Scrollable if too many items */
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.editable-hobby-item,
+.editable-project-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap; /* Cho phép wrap trên màn hình nhỏ */
+}
+
+.editable-hobby-item:last-child,
+.editable-project-item:last-child {
+    border-bottom: none;
+}
+
+.editable-hobby-item i {
+    font-size: 1.5em;
+    color: var(--accent-color);
+    flex-shrink: 0; /* Don't shrink icon */
+}
+
+.editable-hobby-item .hobby-text-input,
+.editable-project-item input[type="text"],
+.editable-project-item textarea {
+    flex-grow: 1; /* Take up remaining space */
+    padding: 8px;
+    border: 1px solid #555;
+    background-color: #3a3a3a;
+    color: var(--text-light);
+    border-radius: 3px;
+    outline: none;
+    min-width: 100px; /* Ensure input is not too small */
+}
+
+.editable-project-item textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.editable-hobby-item .change-icon-btn,
+.editable-hobby-item .delete-hobby-btn,
+.delete-project-btn,
+.delete-tech-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 5px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease-in-out;
+    flex-shrink: 0;
+}
+
+.editable-hobby-item .change-icon-btn {
+    color: var(--accent-color);
+}
+.editable-hobby-item .change-icon-btn:hover {
+    background-color: rgba(0, 188, 212, 0.2);
+}
+
+.editable-hobby-item .delete-hobby-btn,
+.delete-project-btn,
+.delete-tech-btn {
+    color: #dc3545;
+}
+.editable-hobby-item .delete-hobby-btn:hover,
+.delete-project-btn:hover,
+.delete-tech-btn:hover {
+    background-color: rgba(220, 53, 69, 0.2);
+}
+
+/* Project specific edit modal styles */
+.project-header-edit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.project-header-edit input {
+    flex-grow: 1;
+}
+
+.project-tech-stack-edit-wrapper {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.project-tech-stack-edit-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.project-tech-stack-edit-list li {
+    background-color: #3a3a3a;
+    color: var(--text-light);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    border: 1px solid #555;
+    position: relative;
+    padding-right: 30px; /* Space for delete button */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.project-tech-stack-edit-list li .delete-tech-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+/* Add New Item Section (for Hobbies and Project Modal) */
+.add-new-item {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.add-new-item input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #555;
+    background-color: #3a3a3a;
+    color: var(--text-light);
+    border-radius: 5px;
+    outline: none;
+}
+
+.add-new-item .icon-picker-btn,
+.add-new-item .add-item-btn {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.add-new-item .icon-picker-btn:hover,
+.add-new-item .add-item-btn:hover {
+    background-color: var(--accent-color-light);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+/* Icon Grid for Icon Picker Modal */
+#iconSearchInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    background-color: #3a3a3a;
+    color: var(--text-light);
+    border-radius: 5px;
+    outline: none;
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.icon-item {
+    background-color: #3a3a3a;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+    color: var(--text-light);
+}
+
+.icon-item:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    transform: translateY(-2px);
+}
+
+.icon-item i {
+    font-size: 1.8em;
+}
+
+
+/* --- Responsive Design (Media Queries) --- */
+@media (max-width: 768px) {
+    /* Hide sidebar by default on small screens */
+    .sidebar-nav {
+        transform: translateX(-100%); /* Slide out of view */
+        box-shadow: none; /* Remove shadow when hidden */
+        border-right: none;
+        width: 280px; /* Make it slightly wider when active */
+    }
+
+    /* Show sidebar when 'active' */
+    .sidebar-nav.active {
+        transform: translateX(0);
+        box-shadow: 2px 0 10px var(--shadow-color); /* Add shadow back when active */
+        border-right: 2px solid var(--border-color);
+    }
+
+    /* Adjust main content wrapper to overlap when sidebar is active */
+    .main-content-wrapper {
+        margin-left: 0; /* Reset margin so content starts from left */
+        width: 100%; /* Take full width */
+        transition: transform var(--sidebar-transition-duration) ease-in-out;
+    }
+
+    .main-content-wrapper.sidebar-active {
+        /* Add an overlay effect */
+        position: relative; /* Needs position for pseudo-element */
+    }
+    .main-content-wrapper.sidebar-active::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+        z-index: 999; /* Below sidebar, above content */
+        cursor: pointer; /* Indicate it's clickable to close */
+    }
+
+    /* Show toggle button */
+    .toggle-sidebar-btn {
+        display: block;
+    }
+
+    /* Banner adjustments */
+    .banner {
+        padding: 60px 0 30px; /* Reduced padding */
+        min-height: 200px;
+    }
+    .profile-avatar-large {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 15px;
+    }
+    .banner-content h1 {
+        font-size: 2.5em;
+    }
+
+    .banner-content .tagline {
+        font-size: 1.1em;
+    }
+
+    /* General section padding */
+    .section-card {
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+
+    .section-title {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+
+    .about-grid, .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-flex {
+        flex-direction: column;
+    }
+
+    .skill-category {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Điều chỉnh nút edit trên mobile */
+    .edit-btn-section, .save-btn, .cancel-btn, .global-edit-btn {
+        padding: 7px 12px;
+        font-size: 0.85em;
+    }
+
+    /* Modal adjustments */
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 20px;
+    }
+
+    .add-new-item {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .add-new-item button, .add-new-item input {
+        width: 100%;
+    }
+    .modal-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .modal-actions button {
+        width: 100%;
+    }
+
+    .editable-hobby-item,
+    .editable-project-item {
+        flex-wrap: wrap; /* Allow items to wrap */
+    }
+    .editable-hobby-item i {
+        font-size: 1.3em;
+    }
+    .editable-hobby-item .hobby-text-input {
+        flex-basis: 100%; /* Take full width */
+        margin-top: 5px; /* Space from icon */
+    }
+
+    .project-tech-stack-edit-list li {
+        padding-right: 25px; /* Adjust for smaller screens */
+    }
+
+    .skill-list li.editable-field {
+        padding-right: 30px; /* Adjust for smaller screens */
+        padding-left: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-content h1 {
+        font-size: 2em;
+    }
+    .banner-content .tagline {
+        font-size: 0.9em;
+    }
+
+    .profile-avatar-large {
+        width: 120px;
+        height: 120px;
+    }
+
+    .section-card {
+        padding: 20px;
+    }
+    .section-title {
+        font-size: 1.5em;
+    }
+    .about-item, .contact-info-item {
+        padding: 20px;
+    }
+    .hobby-item {
+        padding: 15px 25px;
+    }
+    .project-item {
+        padding: 20px;
+    }
+    .btn-project {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .edit-btn-section, .save-btn, .cancel-btn, .global-edit-btn {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+
+    /* Adjustments for sidebar on very small screens */
+    .sidebar-nav {
+        width: 100%; /* Full width when active to allow more space */
+        min-width: unset; /* Remove min-width to allow shrinking */
+        max-width: 320px; /* Cap width for very wide phones */
+    }
+    .toggle-sidebar-btn {
+        top: 15px;
+        left: 15px;
+        font-size: 1em;
+    }
+}

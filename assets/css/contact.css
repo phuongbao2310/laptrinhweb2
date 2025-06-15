@@ -1,0 +1,234 @@
+/*======== Định dạng cho Phần "Liên hệ" (Contact Section) ========*/
+
+/* Các kiểu cơ bản cho phần Liên hệ */
+.contact-section {
+    position: relative;
+    left: 250px;
+    min-height: 100vh;
+    width: calc(100% - 250px); /* Chiều rộng của section */
+    background: var(--body-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 48px 0 32px 0; /* Đệm trên và dưới */
+    box-sizing: border-box;
+    margin-bottom: 100px;
+    transition: var(--tran-05); /* Chuyển động mượt mà khi sidebar thay đổi */
+}
+
+/* Điều chỉnh vị trí phần Liên hệ khi sidebar đóng */
+.sidebar.close ~ .contact-section {
+    left: 88px;
+    width: calc(100% - 88px);
+}
+
+/* Kiểu dáng cho khối chứa nội dung liên hệ chính */
+.contact-block {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 32px auto;
+    background: var(--sidebar-color);
+    border-radius: 18px;
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.10);
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Kiểu dáng cho phần bao quanh nội dung liên hệ (chi tiết và form) */
+.contact-content-wrapper {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* Kiểu dáng cho từng mục liên hệ (ví dụ: email, điện thoại) */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Khoảng cách giữa icon và text */
+}
+
+/* Kiểu dáng cho icon phương thức liên hệ */
+.contact-method i {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-right: 15px;
+    transition: transform 0.3s ease-out, color 0.3s ease-out; /* Hiệu ứng chuyển động mượt mà */
+}
+
+/* Kiểu dáng cho văn bản phương thức liên hệ */
+.contact-method span {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* Hiệu ứng khi di chuột qua phương thức liên hệ (icon) */
+.contact-method:hover i {
+    transform: translateX(5px) scale(1.05); /* Icon dịch sang phải và phóng to nhẹ */
+    color: var(--primary-color-dark); /* Icon tối màu hơn một chút */
+}
+
+/* Hiệu ứng khi di chuột qua phương thức liên hệ (văn bản) */
+.contact-method:hover span {
+    color: var(--primary-color); /* Chữ sáng màu hơn */
+}
+
+/* Kiểu dáng cho phần chi tiết liên hệ */
+.contact-details {
+    flex: 1;
+    min-width: 280px;
+    color: var(--text-color);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Kiểu dáng cho hàng tiêu đề (tiêu đề và đường gạch chân) */
+.contact-title-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+/* Kiểu dáng cho tiêu đề */
+.contact-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Kiểu dáng cho đường gạch chân tiêu đề */
+.contact-title-underline {
+    flex: 1;
+    height: 2.5px;
+    background: var(--primary-color);
+    border-radius: 2px;
+    display: inline-block;
+    margin-left: 12px;
+}
+
+/* Kiểu dáng cho form liên hệ */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Khoảng cách giữa các trường form */
+    flex: 1;
+    min-width: 300px; /* Độ rộng tối thiểu cho form */
+    max-width: 600px;
+    margin: 0;
+}
+
+/* Kiểu dáng cho hàng trong form (nếu có nhiều trường trên một hàng) */
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Kiểu dáng chung cho input và textarea */
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 8px;
+    border: 1.5px solid var(--primary-color-light);
+    background: var(--body-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    resize: vertical; /* Chỉ cho phép kéo dãn theo chiều dọc */
+    min-height: 50px; /* Chiều cao tối thiểu cho input */
+    transition: border-color 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.3s ease-out;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Chiều cao tối thiểu cho textarea */
+.form-textarea {
+    min-height: 150px;
+}
+
+/* Hiệu ứng khi input hoặc textarea được focus */
+.form-input:focus,
+.form-textarea:focus {
+    border-color: var(--primary-color); /* Viền sáng hơn */
+    box-shadow: 0 0 12px 0 rgba(0, 150, 255, 0.4); /* Đổ bóng mạnh hơn với màu primary */
+    background-color: var(--input-focus-bg, rgba(255, 255, 255, 0.05)); /* Nền hơi đổi màu khi focus */
+}
+
+/* Kiểu dáng cho nút gửi */
+.send-btn {
+    align-self: center; /* Căn giữa nút */
+    padding: 12px 28px;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out, transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    margin-top: 10px;
+}
+
+/* Hiệu ứng khi di chuột qua nút gửi */
+.send-btn:hover {
+    background-color: var(--primary-color-darker-light); /* Màu tối hơn rõ rệt cho light mode */
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 150, 255, 0.4);
+}
+
+/* Định nghĩa biến màu cho nút gửi trong root */
+:root {
+    --primary-color-darker-light: #004d80; /* Ví dụ: một màu xanh đậm hơn Primary (thường là #007bff) */
+}
+
+/* Hiệu ứng khi di chuột qua nút gửi trong dark mode */
+body.dark .send-btn:hover {
+    background-color: var(--primary-color-dark); /* Sử dụng primary-color-dark của dark mode */
+}
+
+/* Hiệu ứng khi click vào nút gửi */
+.send-btn:active {
+    transform: translateY(0); /* Trở về vị trí ban đầu khi click */
+    background-color: var(--primary-color); /* Trở về màu ban đầu */
+    box-shadow: 0 2px 10px rgba(0, 150, 255, 0.2); /* Bóng đổ nhỏ hơn */
+}
+
+/* Màu nền input khi focus trong dark mode */
+body.dark {
+    --input-focus-bg: rgba(255, 255, 255, 0.08);
+}
+
+/*======== Media Queries: Điều chỉnh cho màn hình nhỏ hơn 768px ========*/
+@media (max-width: 768px) {
+    .contact-block {
+        padding: 24px 20px;
+        gap: 20px;
+    }
+
+    .contact-content-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .contact-form,
+    .contact-details {
+        min-width: unset;
+        max-width: 100%;
+        flex-basis: auto;
+    }
+
+    .contact-details {
+        align-items: flex-start;
+    }
+}

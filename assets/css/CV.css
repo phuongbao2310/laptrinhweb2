@@ -1,0 +1,992 @@
+/* General Body Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden; /* Để quản lý cuộn trong các cột cụ thể */
+}
+
+/* --- CHẾ ĐỘ SÁNG (LIGHT THEME) --- */
+:root {
+    --background-color: #f4f7f6;
+    --text-color: #333;
+    --primary-color: #ac0606; /* Màu đỏ đô cho các điểm nhấn */
+    --primary-color-rgb: 172, 6, 6; /* RGB của #ac0606 để dùng trong rgba() */
+    --primary-color-darker: #8a0505; /* Màu tối hơn cho hover */
+    --secondary-color: #555;
+    --border-color: #ddd; /* Màu xám nhạt cho đường viền */
+    --header-bg: #e0e0e0;
+    --section-bg: #fff;
+    --link-color: #007bff;
+    --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+    /* Đường dẫn ảnh nền cố định cho mục sở thích (chế độ sáng) */
+    --hobby-bg-image: url('../images/anhcuaND.jpg'); /* Đổi tên file ảnh thành không dấu và không khoảng trắng */
+
+    /* Biến cho màu hover của nav icons */
+    --nav-icon-hover-bg: var(--primary-color);
+    --nav-icon-hover-color: white;
+}
+
+/* --- CHẾ ĐỘ TỐI (DARK THEME) --- */
+body.dark-theme {
+    --background-color: #282c34;
+    --text-color: #e2e2e2;
+    --primary-color: #61dafb; /* Màu xanh lam nhạt cho các điểm nhấn trong chế độ tối */
+    --primary-color-rgb: 97, 218, 251; /* RGB của #61dafb */
+    --primary-color-darker: #4faedb; /* Màu tối hơn cho hover trong dark theme */
+    --secondary-color: #bbb;
+    --border-color: #444;
+    --header-bg: #3c414a;
+    --section-bg: #32363e;
+    --link-color: #8be9fd;
+    --box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+
+    /* Đường dẫn ảnh nền cố định cho mục sở thích (chế độ tối) */
+    --hobby-bg-image: url('../images/anhcuaND.jpg'); /* Sử dụng cùng ảnh hoặc đổi ảnh khác nếu muốn */
+
+    /* Biến cho màu hover của nav icons trong dark theme */
+    --nav-icon-hover-bg: var(--primary-color);
+    --nav-icon-hover-color: var(--background-color);
+}
+
+/* --- NAVIGATION BAR (MENU CỐ ĐỊNH BÊN TRÁI) --- */
+.cv-nav-icons {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 80px;
+    background-color: var(--header-bg);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    z-index: 1000;
+}
+
+/* Thêm một container để nhóm các icon menu */
+.nav-links-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; /* Phân bố đều các icon trong nhóm này */
+    flex-grow: 1; /* Cho phép nhóm này chiếm toàn bộ không gian còn lại */
+    width: 100%; /* Đảm bảo nhóm chiếm hết chiều rộng của nav bar */
+    padding-bottom: 20px; /* Thêm padding để tạo khoảng cách với theme switch */
+}
+
+.cv-nav-icons a {
+    color: var(--secondary-color);
+    font-size: 1.8em;
+    padding: 15px 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cv-nav-icons a:hover {
+    background-color: var(--nav-icon-hover-bg);
+    color: var(--nav-icon-hover-color);
+}
+
+/* Theme Switch (Chuyển đổi chủ đề) */
+.theme-switch-wrapper {
+    /* Đảm bảo nó tuân theo luồng Flexbox của .cv-nav-icons */
+    position: static; 
+    margin-bottom: 20px; /* Khoảng cách từ dưới cùng của thanh nav */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    /* Loại bỏ `.icon-position` khỏi selector này vì nó đã được di chuyển */
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.theme-text {
+    color: var(--secondary-color);
+    font-size: 0.8em;
+}
+
+/* Main Layout Wrapper (Flexbox for 2 columns) */
+.main-layout-wrapper {
+    display: flex;
+    flex-grow: 1;
+    margin-left: 80px; /* Khoảng cách nội dung chính phải khớp với width của .cv-nav-icons */
+    height: 100vh;
+    background-color: var(--background-color);
+}
+
+/* --- PERSONAL INFO COLUMN (CỘT THÔNG TIN CÁ NHÂN CỐ ĐỊNH) --- */
+.personal-info-column {
+    width: 350px; 
+    min-width: 250px; 
+    max-width: 600px; 
+    background-color: var(--section-bg);
+    padding: 20px;
+    border-right: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow);
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+/* Đảm bảo profile-header có position relative để các icon con định vị tuyệt đối */
+.personal-info-column .profile-header {
+    position: relative; /* Rất quan trọng! */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+/* Định vị icon chỉnh sửa */
+.edit-icon-near-avatar {
+    position: absolute;
+    top: 25px; /* Giữ nguyên hoặc điều chỉnh nếu cần */
+    right: 25px; /* Giữ nguyên hoặc điều chỉnh nếu cần */
+    color: var(--primary-color);
+    font-size: 20px;
+    background-color: var(--background-color);
+    padding: 8px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.edit-icon-near-avatar:hover {
+    color: var(--text-color); 
+    background-color: var(--primary-color); 
+    transform: scale(1.1); 
+    cursor: pointer;
+}
+
+/* HIỆU ỨNG ĐỔI ẢNH KHI HOVER VÀ GỢN SÓNG CHO AVATAR */
+.profile-photo-wrapper {
+    width: 250px; 
+    height: 250px; 
+    border-radius: 50%;
+    border: 4px solid var(--primary-color);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden; 
+    transition: border-color 0.3s ease; 
+    box-shadow: 0 0 15px rgba(0,0,0,0.2); 
+}
+
+.profile-photo-wrapper:hover {
+    overflow: visible; 
+}
+
+.profile-photo-main,
+.profile-photo-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.profile-photo-hover {
+    opacity: 0; 
+}
+
+.profile-photo-wrapper:hover .profile-photo-main {
+    opacity: 0;
+}
+
+.profile-photo-wrapper:hover .profile-photo-hover {
+    opacity: 1;
+}
+
+/* HIỆU ỨNG GỢN SÓNG (WATER RIPPLE EFFECT) */
+.profile-photo-wrapper::before,
+.profile-photo-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.7s ease-out; 
+}
+
+.profile-photo-wrapper:hover::before,
+.profile-photo-wrapper:hover::after {
+    animation: ripple-border 1.5s infinite forwards;
+    opacity: 1;
+}
+
+.profile-photo-wrapper:hover::after {
+    animation-delay: 0.5s; 
+}
+
+@keyframes ripple-border {
+    0% {
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
+    }
+    100% {
+        width: 150%; 
+        height: 150%;
+        opacity: 0;
+    }
+}
+/* KẾT THÚC HIỆU ỨNG GỢN SÓNG CHO AVATAR */
+
+
+.personal-info-column h1 {
+    margin: 0;
+    color: var(--primary-color);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2em; 
+}
+
+.personal-info-column .tagline {
+    font-style: italic;
+    color: var(--secondary-color);
+    margin: 8px 0 0; 
+    font-size: 1.1em; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    display: inline-block; 
+    border-right: 2px solid transparent; 
+    animation: typing-cursor 0.75s infinite; 
+}
+
+/* KEYFRAMES CHO HIỆU ỨNG CHỮ CHẠY */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes typing-cursor {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--secondary-color); }
+}
+
+/* Khi JavaScript thêm các span cho từng ký tự */
+.char-typing-effect {
+    opacity: 0;
+    animation: fade-in-char 0.05s forwards; 
+}
+
+@keyframes fade-in-char {
+    to { opacity: 1; }
+}
+/* KẾT THÚC HIỆU ỨNG CHỮ CHẠY */
+
+
+.personal-info-column .contact-details,
+.personal-info-column .about-me {
+    padding-bottom: 15px; 
+    margin-bottom: 15px; 
+    border-bottom: 1px solid var(--border-color);
+}
+
+.personal-info-column .contact-details:last-of-type,
+.personal-info-column .about-me:last-of-type {
+    border-bottom: none;
+}
+
+/* Điều chỉnh phân bố chữ trong mục thông tin */
+.personal-info-column .contact-details p {
+    margin: 8px 0; 
+    line-height: 1.8; 
+    text-align: justify; 
+    text-align-last: center; 
+    padding: 0 5px; 
+    font-size: 1.5em; 
+}
+
+.personal-info-column .about-me p {
+    margin: 10px 0; 
+    line-height: 1.7; 
+    text-align: justify; 
+    text-align-last: center; 
+    padding: 0 5px; 
+    font-size: 1.7em; 
+}
+
+.personal-info-column .about-me h2,
+.personal-info-column .contact-details h2 {
+    color: var(--primary-color);
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 1.7em; 
+    margin-top: 0;
+    margin-bottom: 15px; 
+    text-align: center; 
+}
+
+
+/* Scrollable Content Column */
+.scrollable-content-column {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px 25px; 
+    box-sizing: border-box;
+}
+
+/* Sections within the scrollable content */
+.section {
+    background-color: var(--section-bg);
+    padding: 20px; 
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+.section h2 {
+    color: var(--primary-color);
+    font-family: 'Montserrat', sans-serif;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 2em; 
+}
+
+/* --- STYLE CHO MỤC SỞ THÍCH (VỚI ẢNH NỀN CỐ ĐỊNH) --- */
+.hobbies-section {
+    position: relative; 
+    background-color: var(--section-bg);
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 250px;
+    text-align: left;
+
+    /* CỐ ĐỊNH ẢNH NỀN Ở ĐÂY */
+    background-image: var(--hobby-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7); 
+}
+
+/* Lớp phủ sẽ luôn hiện diện */
+.hobbies-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); 
+    border-radius: 8px;
+    z-index: 1; 
+    transition: background-color 0.5s ease-in-out; 
+}
+
+/* Đảm bảo nội dung nằm trên lớp phủ */
+.hobbies-section > * {
+    position: relative;
+    z-index: 2; 
+}
+
+/* Tiêu đề và nội dung sẽ luôn có màu trắng trên ảnh nền */
+.hobbies-section h2 { /* Không có h1 trong section này, nên tôi bỏ h1 */
+    color: white; 
+    border-bottom-color: white; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em; 
+    text-align: left;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    transition: color 0.5s ease-in-out, border-bottom-color 0.5s ease-in-out;
+}
+
+.hobbies-section ul {
+    list-style: none; 
+    padding: 0;
+    margin: 10px 0 20px 0;
+    width: 100%;
+    text-align: left; 
+}
+
+.hobbies-section ul li {
+    display: list-item; 
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 5px; 
+    font-size: 1.5em; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, text-shadow 0.5s ease-in-out;
+    width: fit-content; 
+}
+
+/* Điều chỉnh lại màu sắc cho chế độ tối (nếu ảnh nền khác nhau) */
+body.dark-theme .hobbies-section {
+    background-image: var(--hobby-bg-image); 
+    color: white; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+body.dark-theme .hobbies-section h2 { /* Chỉ h2 */
+    color: white; 
+    border-bottom-color: white;
+}
+
+body.dark-theme .hobbies-section ul li {
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+/* --- KẾT THÚC STYLE CHO MỤC SỞ THÍCH --- */
+
+
+.entry-item {
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-left: 3px solid var(--border-color);
+}
+
+.entry-item:last-child {
+    margin-bottom: 0;
+}
+
+.entry-item h3 {
+    margin: 0 0 5px 0;
+    color: var(--secondary-color);
+    font-size: 2.5em; 
+}
+
+.entry-item .period {
+    font-size: 1.2em;
+    color: #777;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.entry-item ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding: 0;
+}
+
+.entry-item ul li {
+    margin-bottom: 5px;
+    font-size: 1.7em; 
+}
+
+.links a {
+    color: var(--link-color);
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+/* CSS để định kiểu cho tiêu đề dự án và icon */
+.project-title-wrapper { /* Bạn không có lớp này trong HTML, nhưng tôi giữ lại nếu bạn định dùng sau này */
+    display: flex; 
+    align-items: center; 
+    margin: 0 0 5px 0; 
+}
+
+.project-link { /* Bạn không có lớp này trong HTML, nhưng tôi giữ lại nếu bạn định dùng sau này */
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    color: var(--secondary-color); 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
+}
+
+.project-link:hover {
+    color: var(--primary-color); 
+    text-decoration: none; 
+}
+
+.project-icon { /* Bạn không có lớp này trong HTML, nhưng tôi giữ lại nếu bạn định dùng sau này */
+    font-size: 1.5em; 
+    color: var(--secondary-color); 
+    transition: color 0.3s ease; 
+}
+
+.project-link:hover .project-icon {
+    color: var(--primary-color); 
+}
+
+/* Đảm bảo các thuộc tính font-size cũ của .entry-item h3 vẫn được áp dụng */
+.entry-item h3 {
+    font-size: 2em; 
+}
+
+/* Skills Section Specifics */
+.skills-category {
+    margin-bottom: 20px;
+}
+
+.skills-category h3 {
+    color: #000; /* Đổi màu chữ thành màu đen */
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 1.7em; 
+}
+
+.skills-category p, .skills-category ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.skills-category p {
+    font-size: 1.5em; 
+}
+
+/* Social Links in Contact Section */
+.social-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+    justify-content: center; 
+}
+
+.social-links a {
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Kích thước icon Font Awesome */
+.social-links a i {
+    font-size: 3em; 
+}
+
+/* Footer (Bạn chưa có footer trong HTML, nhưng CSS vẫn được giữ) */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: var(--header-bg);
+    color: var(--secondary-color);
+    font-size: 0.9em;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- Modal chỉnh sửa thông tin (Edit Modal) --- */
+
+/* Lớp phủ nền modal - Giữ nguyên như cũ */
+.edit-modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 1050; 
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px); 
+    /* Thêm scroll cho overlay nếu nội dung modal quá dài */
+    overflow-y: auto; /* Rất quan trọng! Cho phép cuộn nếu modal cao hơn màn hình */
+    padding: 20px 0; /* Thêm padding trên dưới để modal không quá sát mép */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+}
+
+.edit-modal-overlay.active {
+    display: flex; 
+}
+
+/* Hộp modal */
+.edit-modal-content {
+    background-color: var(--section-bg);
+    padding: 25px; /* Giảm padding một chút để tiết kiệm không gian */
+    border-radius: 12px; 
+    box-shadow: var(--box-shadow);
+    width: 90%;
+    max-width: 500px; /* Giảm max-width từ 600px xuống 500px */
+    /* Thêm chiều cao tối đa và cho phép cuộn */
+    max-height: 90vh; /* Giới hạn chiều cao modal là 90% chiều cao viewport */
+    overflow-y: auto; /* Cho phép cuộn nội dung bên trong modal nếu cần */
+    position: relative;
+    transform: translateY(-20px); 
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    border: 1px solid var(--border-color); 
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+}
+
+.edit-modal-overlay.active .edit-modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Tiêu đề modal - Giữ nguyên */
+.edit-modal-content h2 {
+    color: var(--primary-color);
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 0;
+    margin-bottom: 20px; /* Giảm margin-bottom một chút */
+    text-align: center;
+    font-size: 1.6em; /* Giảm kích thước font */
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 8px; /* Giảm padding-bottom */
+}
+
+/* Các trường form trong modal - Giữ nguyên, đã khá tốt */
+.edit-modal-content .form-group {
+    margin-bottom: 15px; /* Giảm khoảng cách giữa các nhóm form */
+}
+
+.edit-modal-content label {
+    display: block;
+    margin-bottom: 6px; /* Giảm khoảng cách giữa label và input */
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 0.9em; /* Giảm kích thước font */
+}
+
+.edit-modal-content input[type="text"],
+.edit-modal-content input[type="email"],
+.edit-modal-content input[type="tel"],
+.edit-modal-content textarea {
+    width: 100%;
+    padding: 10px; /* Giảm padding */
+    border: 1px solid var(--border-color);
+    border-radius: 8px; 
+    font-size: 0.95em; /* Giảm kích thước font */
+    color: var(--text-color);
+    background-color: var(--background-color); 
+    box-sizing: border-box; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-modal-content input[type="text"]:focus,
+.edit-modal-content input[type="email"]:focus,
+.edit-modal-content input[type="tel"]:focus,
+.edit-modal-content textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
+    outline: none; 
+}
+
+.edit-modal-content textarea {
+    resize: vertical; 
+    min-height: 60px; /* Giảm chiều cao tối thiểu */
+}
+
+/* Nút đóng modal - Giữ nguyên */
+.edit-modal-content .close-button {
+    position: absolute;
+    top: 10px; /* Dịch lên trên một chút */
+    right: 10px; /* Dịch sang phải một chút */
+    background: none;
+    border: none;
+    font-size: 1.5em; /* Giảm kích thước */
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.edit-modal-content .close-button:hover {
+    color: var(--primary-color);
+}
+
+/* Nút lưu/hủy */
+.edit-modal-content .modal-actions {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 10px; /* Giảm khoảng cách giữa các nút */
+    margin-top: 20px; /* Giảm khoảng cách trên từ form đến nút */
+    flex-wrap: wrap; /* Rất quan trọng: cho phép các nút xuống dòng nếu không đủ chỗ */
+    justify-content: center; /* Căn giữa các nút khi xuống dòng */
+}
+
+.edit-modal-content .modal-actions button {
+    padding: 10px 20px; /* Giảm padding cho nút */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em; /* Giảm kích thước font */
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex-grow: 1; /* Cho phép các nút giãn ra */
+    max-width: 150px; /* Giới hạn chiều rộng tối đa của mỗi nút */
+}
+
+.edit-modal-content .modal-actions .save-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.edit-modal-content .modal-actions .save-btn:hover {
+    background-color: var(--primary-color-darker); 
+}
+
+.edit-modal-content .modal-actions .cancel-btn {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.edit-modal-content .modal-actions .cancel-btn:hover {
+    background-color: #c0c0c0; 
+    color: var(--text-color);
+}
+
+/* --- RESPONSIVE DESIGN (Điều chỉnh lại phần modal trong media query) --- */
+@media (max-width: 768px) {
+    /* ... (các phần responsive khác giữ nguyên) ... */
+
+    /* Responsive cho modal trên màn hình nhỏ hơn */
+    .edit-modal-content {
+        width: 95%; /* Giữ nguyên 95% */
+        padding: 15px; /* Giảm padding thêm trên mobile */
+        max-height: 95vh; /* Tăng max-height một chút trên mobile */
+    }
+    .edit-modal-content h2 {
+        font-size: 1.4em; /* Giảm kích thước font tiêu đề */
+        margin-bottom: 15px;
+    }
+    .edit-modal-content label {
+        font-size: 0.85em; /* Giảm kích thước font label */
+    }
+    .edit-modal-content input[type="text"],
+    .edit-modal-content input[type="email"],
+    .edit-modal-content input[type="tel"],
+    .edit-modal-content textarea {
+        padding: 8px; /* Giảm padding input */
+        font-size: 0.9em; /* Giảm kích thước font input */
+    }
+    .edit-modal-content .modal-actions {
+        flex-direction: column; /* Nút xếp chồng lên nhau */
+        align-items: stretch; /* Kéo dài nút ra */
+        gap: 8px; /* Giảm khoảng cách giữa các nút */
+        margin-top: 15px; /* Giảm khoảng cách trên */
+    }
+    .edit-modal-content .modal-actions button {
+        width: 100%;
+        margin-bottom: 0; /* Đảm bảo không có margin dưới thừa khi là column */
+        font-size: 0.95em; /* Kích thước font nút */
+        max-width: unset; /* Bỏ giới hạn max-width để nó chiếm 100% */
+    }
+}
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 992px) {
+    .personal-info-column {
+        width: 300px; 
+    }
+    .profile-photo-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .cv-nav-icons {
+        position: static; /* Thay đổi từ fixed sang static */
+        width: 100%;
+        height: auto;
+        flex-direction: row; /* Hàng ngang cho mobile */
+        justify-content: space-around; 
+        padding: 10px 0;
+        box-shadow: var(--box-shadow);
+        border-bottom: 1px solid var(--border-color);
+        /* Thêm thuộc tính flex-wrap để các item có thể xuống dòng nếu không đủ chỗ */
+        flex-wrap: wrap; 
+    }
+
+    /* Đảm bảo các link vẫn phân bố đều khi nav bar là hàng ngang */
+    .cv-nav-icons a {
+        font-size: 1.5em;
+        padding: 10px;
+        flex-grow: 1; /* Cho phép các link giãn ra */
+        min-width: 50px; /* Giới hạn kích thước tối thiểu cho icon */
+    }
+
+    /* Ẩn .nav-links-group trên mobile để các link trực tiếp là flex items */
+    .nav-links-group {
+        display: contents; /* Hiển thị nội dung con trực tiếp trong container cha */
+        /* Bỏ các thuộc tính flexbox không cần thiết khi display: contents; */
+        flex-grow: unset;
+        justify-content: unset;
+        padding-bottom: 0;
+    }
+
+    /* Điều chỉnh theme-switch-wrapper trên mobile */
+    .theme-switch-wrapper {
+        position: static; /* Quan trọng: Loại bỏ mọi định vị tuyệt đối/cố định */
+        margin-top: 10px; /* Thêm khoảng cách nếu cần */
+        margin-bottom: 10px; /* Khoảng cách với phần nội dung chính */
+        flex-direction: row; /* Chuyển sang hàng ngang */
+        gap: 10px;
+        width: auto;
+        /* Nếu bạn muốn nó nằm riêng một hàng hoặc căn giữa, có thể thêm margin: auto; */
+        justify-content: center; 
+        align-self: center; /* Tự căn giữa trong flex container của nav */
+    }
+    
+    .main-layout-wrapper {
+        flex-direction: column;
+        margin-left: 0;
+        height: auto;
+    }
+
+    .personal-info-column {
+        width: auto;
+        max-width: 100%;
+        min-width: unset;
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px;
+    }
+
+    .personal-info-column .profile-header {
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .personal-info-column .contact-details,
+    .personal-info-column .about-me {
+        text-align: center;
+    }
+
+    .personal-info-column .contact-details p,
+    .personal-info-column .about-me p {
+        text-align: center;
+        text-align-last: center;
+        padding: 0;
+    }
+
+    /* Điều chỉnh cho mục sở thích trên mobile */
+    .hobbies-section {
+        text-align: center;
+        padding: 20px;
+        background-image: var(--hobby-bg-image);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+
+    .hobbies-section p {
+        text-align: center;
+        padding: 0;
+    }
+
+    .hobbies-section h2 { /* Chỉ h2 */
+        text-align: center;
+    }
+
+    .hobbies-section ul li {
+        width: 100%; /* Đảm bảo các mục list chiếm toàn bộ chiều rộng */
+        text-align: center; /* Căn giữa nội dung list item */
+        margin-right: 0; /* Đảm bảo không có margin bên phải thừa */
+    }
+
+    .scrollable-content-column {
+        overflow-y: visible;
+        padding: 15px;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    /* Responsive cho modal trên màn hình nhỏ hơn */
+    .edit-modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    .edit-modal-content h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+    .edit-modal-content .modal-actions {
+        flex-direction: column; 
+        align-items: stretch; 
+    }
+    .edit-modal-content .modal-actions button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

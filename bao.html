@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Của Phạm Lâm Phương Bảo</title>
+    <link rel="stylesheet" href="assets/css/bao.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+<button class="theme-toggle-btn" id="themeToggleBtn">Chế độ Tối</button>
+    <nav class="sidebar-nav" id="sidebarNav">
+        <div class="sidebar-header">
+            <img src="assets/images/PB1.jpg" alt="Ảnh cá nhân của bạn" class="sidebar-avatar">
+            <h2>Phạm Lâm Phương Bảo</h2>
+            <p>Digital CV</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about"><i class="fas fa-user-circle"></i> Thông tin cá nhân</a></li>
+            <li><a href="#career"><i class="fas fa-bullseye"></i> Mục tiêu nghề nghiệp</a></li>
+            <li><a href="#hobbies"><i class="fas fa-heart"></i> Sở thích</a></li>
+            <li><a href="#skills"><i class="fas fa-cogs"></i> Kỹ năng</a></li>
+            <li><a href="#experience"><i class="fas fa-project-diagram"></i> Dự án</a></li>
+            <li><a href="#contact"><i class="fas fa-address-book"></i> Liên hệ</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="https://github.com/phuongbao2310" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://web.facebook.com/jenz2190/?locale=vi_VN" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/_petrichor.05_/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+     <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+        <input type="checkbox" id="checkbox" />
+        <div class="slider round"></div>
+    </label>
+    <span class="switch-label">Chế độ Tương phản</span>
+</div>
+
+<button class="toggle-sidebar-btn" id="toggleSidebarBtn">
+    <i class="fas fa-bars"></i>
+</button>
+        
+    </nav>
+
+    <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header">
+            <div class="banner">
+                <div class="container banner-content">
+                    <img src="assets/images/PB1.jpg" alt="Ảnh cá nhân của bạn" class="profile-avatar-large">
+                    <h1>Phạm Lâm Phương Bảo</h1>
+                    <p class="tagline">DEVELOPER | CREATIVE | CAREFUL</p>
+                </div>
+             
+            </div>
+        </header>
+        <main>
+            <div class="global-edit-controls">
+                <button id="toggleEditModeBtn" class="global-edit-btn"><i class="fas fa-edit"></i> Chế độ Chỉnh sửa</button>
+                <div id="editModeActionButtons" class="edit-mode-actions">
+                    <button id="saveAllChangesBtn" class="save-btn"><i class="fas fa-save"></i> Lưu Thay Đổi</button>
+                    <button id="cancelAllChangesBtn" class="cancel-btn"><i class="fas fa-times"></i> Hủy Chỉnh Sửa</button>
+                </div>
+            </div>
+
+            <div class="container main-sections">
+                <section id="about" class="section-card fade-in">
+                    <h2 class="section-title">THÔNG TIN CÁ NHÂN</h2>
+                    <div class="about-grid">
+                        <div class="about-item" data-section="about">
+                            <i class="fas fa-user-circle icon-large"></i>
+                            <h3>Họ và Tên</h3>
+                            <p data-field="name">Phạm Lâm Phương Bảo</p>
+                        </div>
+                        <div class="about-item" data-section="about">
+                            <i class="fas fa-birthday-cake icon-large"></i>
+                            <h3>Ngày sinh</h3>
+                            <p data-field="dob">23/10/2005</p>
+                        </div>
+                        <div class="about-item" data-section="about">
+                            <i class="fas fa-map-marker-alt icon-large"></i>
+                            <h3>Địa chỉ</h3>
+                            <p data-field="address">Định An, Trà Cú, Trà Vinh</p>
+                        </div>
+                        <div class="about-item" data-section="about">
+                            <i class="fas fa-venus-mars icon-large"></i> <h3>Giới tính</h3>
+                            <p data-field="gender">Nam</p>
+                        </div>
+                        <div class="about-item" data-section="about">
+                            <i class="fas fa-globe-americas icon-large"></i> <h3>Quốc tịch</h3>
+                            <p data-field="nationality">Việt Nam</p>
+                        </div>
+                        <div class="about-item" data-section="about">
+                            <i class="fas fa-heart icon-large"></i> <h3>Tình trạng hôn nhân</h3>
+                            <p data-field="marital-status">Đang tìm hiểu</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="career" class="section-card fade-in">
+                    <h2 class="section-title">MỤC TIÊU</h2>
+                    <p class="career-goal" data-field="career-goal">
+                       Tôi thật sự muốn trở thành một người tự do, có thể theo đuổi cũng như làm tất cả những gì bản thân yêu thích và khao khát, không bị gò bó bởi bất cứ thứ gì.
+                    </p>
+                </section>
+
+                <section id="hobbies" class="section-card fade-in">
+                    <h2 class="section-title">SỞ THÍCH</h2>
+                    <div class="hobbies-grid">
+                        <div class="hobby-item">
+                            <i class="fas fa-gamepad icon-medium"></i>
+                            <p>Chơi game</p>
+                        </div>
+                        <div class="hobby-item">
+                            <i class="fas fa-book-reader icon-medium"></i>
+                            <p>Đọc sách</p>
+                        </div>
+                        <div class="hobby-item">
+                            <i class="fas fa-headphones icon-medium"></i>
+                            <p>Nghe nhạc</p>
+                        </div>
+                    
+                        <div class="hobby-item">
+                            <i class="fas fa-utensils icon-medium"></i>
+                            <p>Nấu ăn</p>
+                        </div>
+                        <div class="hobby-item">
+                            <i class="fas fa-film icon-medium"></i>
+                            <p>Xem phim</p>
+                        </div>
+                    </div>
+                    <button class="edit-hobbies-btn edit-btn-section" style="margin-top: 30px;"><i class="fas fa-edit"></i> Chỉnh sửa Sở thích</button>
+                </section>
+
+                <section id="skills" class="section-card fade-in">
+                    <h2 class="section-title">KỸ NĂNG</h2>
+                    <div class="skills-flex">
+                        <div class="skill-category" data-category-id="programming">
+                            <h3><i class="fas fa-code"></i> Kỹ năng lập trình</h3>
+                            <ul class="skill-list">
+                                
+                                <li data-field="skill">HTML / CSS</li>
+                                
+                                <li data-field="skill">Git / GitHub</li>
+                                <li data-field="skill">SQL </li>
+
+                            </ul>
+                            <div class="add-new-item add-skill-div">
+                                <input type="text" class="new-skill-input" placeholder="Kỹ năng mới">
+                                <button class="add-item-btn add-specific-skill-btn"><i class="fas fa-plus"></i> Thêm</button>
+                            </div>
+                        </div>
+                        <div class="skill-category" data-category-id="tools">
+                            <h3><i class="fas fa-tools"></i> Công cụ & Kỹ thuật</h3>
+                            <ul class="skill-list">
+                                <li data-field="skill">VS Code</li>
+                                <li data-field="skill">Figma </li>
+                                
+                               
+                                
+                                <li data-field="skill">Teamwork</li>
+                            </ul>
+                            <div class="add-new-item add-skill-div">
+                                <input type="text" class="new-skill-input" placeholder="Kỹ năng mới">
+                                <button class="add-item-btn add-specific-skill-btn"><i class="fas fa-plus"></i> Thêm</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="experience" class="section-card fade-in">
+                    <h2 class="section-title">DỰ ÁN TIÊU BIỂU</h2>
+                    <div class="project-grid">
+                        <div class="project-item" data-project-id="1">
+                            <h3 data-field="project-title">Dự án: Trang chủ và CV bản thân</h3>
+                            <p class="project-role" data-field="project-role">Là người xây dựng dự án.</p>
+                            <p class="project-description" data-field="project-description">
+                               Xây dựng một trang web cá nhân để giới thiệu bản thân, kỹ năng và dự án. Trang web bao gồm các phần thông tin cá nhân, mục tiêu nghề nghiệp, sở thích, kỹ năng và dự án tiêu biểu.
+                            </p>
+                            <ul class="project-tech-stack" data-field="project-tech-stack">
+                                <li data-field="tech">HTML</li>
+                                <li data-field="tech">CSS3</li>
+                                <li data-field="tech">Clean Code, Comment</li>
+                                
+                            </ul>
+                            <a href="https://github.com/phuongbao2310/Giao-di-n-Web" target="_blank" class="btn-project">Xem dự án <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <div class="project-item" data-project-id="2">
+                            <h3 data-field="project-title">Dự án: HIV Treatment and Medical Services System</h3>
+                            <p class="project-role" data-field="project-role">Cập nhật nội dung lên Git</p>
+                            <p class="project-description" data-field="project-description">
+                                Là một phần mềm hỗ trợ người bệnh HIV tiếp cận dịch vụ y tế một cách an toàn, tiện lợi và riêng tư.
+                            </p>
+                            <ul class="project-tech-stack" data-field="project-tech-stack">
+                                <li data-field="tech">Java JDK 23</li>
+                                <li data-field="tech">Spring Boot (Backend)</li>
+                                <li data-field="tech">MySQL/PostgreSQL (Database)</li>
+                                <li data-field="tech">ReactJS / Next.js</li>
+                            </ul>
+                            <a href="https://github.com/VinhPhus/hiv-medical-service-system" target="_blank" class="btn-project">Xem dự án <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <button class="add-project-btn edit-btn-section" style="margin-top: 30px;"><i class="fas fa-plus"></i> Thêm Dự án</button>
+                </section>
+
+                <section id="contact" class="section-card fade-in">
+                    <h2 class="section-title">LIÊN HỆ</h2>
+                    <div class="contact-grid">
+                        <div class="contact-info-item" data-contact-id="github">
+                            <i class="fab fa-github icon-large"></i>
+                            <h3>GitHub</h3>
+                            <a href="https://github.com/phuongbao2310" target="_blank" data-field="link">BaoPhwww</a>
+                        </div>
+                        <div class="contact-info-item" data-contact-id="facebook">
+                            <i class="fab fa-facebook-f icon-large"></i>
+                            <h3>Facebook</h3>
+                            <a href="https://web.facebook.com/jenz2190/?locale=vi_VN" target="_blank" data-field="link">Phạm Lâm Phương Bảo</a>
+                        </div>
+                        <div class="contact-info-item" data-contact-id="instagram">
+                            <i class="fab fa-instagram icon-large"></i>
+                            <h3>Instagram</h3>
+                            <a href="https://www.instagram.com/_petrichor.05_/" target="_blank" data-field="link">_petrichor.05_</a>
+                        </div>
+                        <div class="contact-info-item" data-contact-id="email">
+                            <i class="fas fa-envelope icon-large"></i>
+                            <h3>Email</h3>
+                            <a href="mailto:archerhelmsley@gmail.com" data-field="link">archerhelmsley@gmail.com</a>
+                        </div>
+                        <div class="contact-info-item" data-contact-id="phone">
+                            <i class="fas fa-phone-alt icon-large"></i>
+                            <h3>Điện thoại</h3>
+                            <span data-field="text">0383973851</span>
+                        </div>
+                        <div class="contact-info-item" data-contact-id="website">
+                            <i class="fas fa-globe icon-large"></i>
+                            <h3>Website</h3>
+                            <a href="https://yourwebsite.com" target="_blank" data-field="link">yourwebsite.com</a>
+                        </div>
+                    </div>
+                    <button class="add-contact-btn edit-btn-section" style="margin-top: 30px;"><i class="fas fa-plus"></i> Thêm Liên hệ</button>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Phạm Lâm Phương Bảo. All Rights Reserved.</p>
+        </footer>
+    </div> <div id="hobbyEditModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Chỉnh sửa Sở thích</h2>
+            <div id="editableHobbiesList" class="editable-list">
+                </div>
+            <div class="add-new-item">
+                <input type="text" id="newHobbyName" placeholder="Tên sở thích mới">
+                <button id="selectHobbyIconBtn" class="icon-picker-btn"><i class="fas fa-icons"></i> Chọn Icon</button>
+                <button id="addHobbyBtn" class="add-item-btn"><i class="fas fa-plus"></i> Thêm</button>
+            </div>
+            <div class="modal-actions">
+                <button id="saveHobbiesBtn" class="save-btn"><i class="fas fa-save"></i> Lưu Thay Đổi</button>
+                <button id="cancelHobbyEditBtn" class="cancel-btn"><i class="fas fa-times"></i> Hủy</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="iconPickerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Chọn Icon</h2>
+            <input type="text" id="iconSearchInput" placeholder="Tìm kiếm icon...">
+            <div id="iconGrid" class="icon-grid">
+                </div>
+        </div>
+    </div>
+
+    <div id="projectEditModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Chỉnh sửa Dự án</h2>
+            <div id="editableProjectsList" class="editable-list">
+                </div>
+            <div class="add-new-item add-project-modal-controls">
+                <button id="addNewProjectBtn" class="add-item-btn"><i class="fas fa-plus"></i> Thêm Dự án Mới</button>
+            </div>
+            <div class="modal-actions">
+                <button id="saveProjectsBtn" class="save-btn"><i class="fas fa-save"></i> Lưu Thay Đổi</button>
+                <button id="cancelProjectEditBtn" class="cancel-btn"><i class="fas fa-times"></i> Hủy</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.fade-in');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Cuộn mượtmượt
+            document.querySelectorAll('.sidebar-nav .nav-links a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+
+                        // Giao diện điện thoạithoại
+                        if (window.innerWidth <= 768) {
+                            document.getElementById('sidebarNav').classList.remove('active');
+                            document.getElementById('mainContentWrapper').classList.remove('sidebar-active');
+                        }
+                    }
+                });
+            });
+
+            // dành cho màn hình nhỏnhỏ
+            const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+            const sidebarNav = document.getElementById('sidebarNav');
+            const mainContentWrapper = document.getElementById('mainContentWrapper');
+
+            toggleSidebarBtn.addEventListener('click', () => {
+                sidebarNav.classList.toggle('active');
+                mainContentWrapper.classList.toggle('sidebar-active');
+            });
+
+  
+            mainContentWrapper.addEventListener('click', (e) => {
+                if (sidebarNav.classList.contains('active') && !sidebarNav.contains(e.target) && e.target !== toggleSidebarBtn) {
+                    sidebarNav.classList.remove('active');
+                    mainContentWrapper.classList.remove('sidebar-active');
+                }
+            });
+
+            // --- GLOBAL EDIT MODE LOGIC ---
+            const toggleEditModeBtn = document.getElementById('toggleEditModeBtn');
+            const editModeActionButtons = document.getElementById('editModeActionButtons');
+            const saveAllChangesBtn = document.getElementById('saveAllChangesBtn');
+            const cancelAllChangesBtn = document.getElementById('cancelAllChangesBtn');
+
+            const editableElements = document.querySelectorAll('[data-field]');
+            const sectionEditButtons = document.querySelectorAll('.edit-btn-section'); // Sở thích, dự án, liên hệhệ
+
+            let isEditMode = false;
+            const originalContents = new Map(); // Store original HTML content for cancellation
+
+            function enableEditMode() {
+                isEditMode = true;
+                document.body.classList.add('edit-mode-active');
+                toggleEditModeBtn.innerHTML = '<i class="fas fa-edit"></i> Đang Chỉnh sửa';
+                toggleEditModeBtn.classList.add('active'); // Add active class for styling
+                editModeActionButtons.style.display = 'flex'; // Show Save/Cancel buttons
+
+                // Store original content and make editable
+                editableElements.forEach(el => {
+                    originalContents.set(el, el.innerHTML); // Store original HTML
+                    el.contentEditable = true;
+                    el.classList.add('editable-field');
+                    // Prevent default click for links when editable
+                    if (el.tagName === 'A') {
+                        el.addEventListener('click', function(e) {
+                            if (isEditMode) e.preventDefault();
+                        });
+                    }
+                });
+
+                // Show section-specific edit buttons
+                sectionEditButtons.forEach(btn => btn.style.display = 'inline-flex');
+
+                // For skills, add delete buttons and enable add input
+                document.querySelectorAll('.skill-list li').forEach(li => {
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.classList.add('delete-skill-btn');
+                    deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+                    deleteBtn.title = 'Xóa kỹ năng';
+                    deleteBtn.addEventListener('click', function() {
+                        this.closest('li').remove();
+                    });
+                    li.appendChild(deleteBtn);
+                });
+                document.querySelectorAll('.add-skill-div').forEach(div => div.style.display = 'flex');
+
+                // For projects, allow editing links as well
+                document.querySelectorAll('.project-item .btn-project').forEach(link => {
+                    link.dataset.originalHref = link.href; // Store original href
+                    link.href = '#'; // Make it non-clickable
+                    link.title = 'Đang trong chế độ chỉnh sửa. Link không hoạt động.';
+                    link.classList.add('disabled-link-in-edit');
+                });
+            }
+
+            function disableEditMode(saveChanges = false) {
+                isEditMode = false;
+                document.body.classList.remove('edit-mode-active');
+                toggleEditModeBtn.innerHTML = '<i class="fas fa-edit"></i> Chế độ Chỉnh sửa';
+                toggleEditModeBtn.classList.remove('active');
+                editModeActionButtons.style.display = 'none';
+
+                editableElements.forEach(el => {
+                    el.contentEditable = false;
+                    el.classList.remove('editable-field');
+                    if (!saveChanges && originalContents.has(el)) {
+                        el.innerHTML = originalContents.get(el); // Revert to original
+                    }
+                });
+                originalContents.clear(); // Clear stored original content
+
+                sectionEditButtons.forEach(btn => btn.style.display = 'none');
+
+                // For skills, remove delete buttons and hide add input
+                document.querySelectorAll('.skill-list li .delete-skill-btn').forEach(btn => btn.remove());
+                document.querySelectorAll('.add-skill-div').forEach(div => div.style.display = 'none');
+
+                // For projects, re-enable links
+                document.querySelectorAll('.project-item .btn-project').forEach(link => {
+                    if (link.dataset.originalHref) {
+                        link.href = link.dataset.originalHref;
+                        delete link.dataset.originalHref;
+                    }
+                    link.removeAttribute('title');
+                    link.classList.remove('disabled-link-in-edit');
+                });
+            }
+
+            toggleEditModeBtn.addEventListener('click', () => {
+                if (!isEditMode) {
+                    enableEditMode();
+                } else {
+                    // If already in edit mode, this button acts as a quick save/toggle off
+                    // We'll let saveAllChangesBtn handle the actual saving
+                    disableEditMode(true); // Save changes and disable edit mode
+                }
+            });
+
+            saveAllChangesBtn.addEventListener('click', () => {
+                // In a real application, you would send data to a server here.
+                // For this static CV, simply accepting the current state is "saving".
+                disableEditMode(true); // true means current changes are accepted
+                alert('Thay đổi đã được "lưu" thành công! (Trên giao diện người dùng)');
+            });
+
+            cancelAllChangesBtn.addEventListener('click', () => {
+                disableEditMode(false); // false means revert to original
+                alert('Thay đổi đã được hủy bỏ!');
+            });
+
+
+            // --- HOBBIES EDITING LOGIC (Accessed via modal now) ---
+            const hobbyEditModal = document.getElementById('hobbyEditModal');
+            const closeHobbyModalBtn = hobbyEditModal.querySelector('.close-button');
+            const editableHobbiesList = document.getElementById('editableHobbiesList');
+            const newHobbyNameInput = document.getElementById('newHobbyName');
+            const selectHobbyIconBtn = document.getElementById('selectHobbyIconBtn');
+            const addHobbyBtn = document.getElementById('addHobbyBtn');
+            const saveHobbiesBtn = document.getElementById('saveHobbiesBtn');
+            const cancelHobbyEditBtn = document.getElementById('cancelHobbyEditBtn');
+            const hobbiesGrid = document.querySelector('#hobbies .hobbies-grid');
+
+            let currentEditingHobbyElement = null; // To store which icon button was clicked
+            let selectedIconClass = 'fas fa-question'; // Default icon for new hobby
+
+            const commonIcons = [
+                'fa-gamepad', 'fa-book-reader', 'fa-headphones', 'fa-code', 'fa-utensils', 'fa-film',
+                'fa-hiking', 'fa-palette', 'fa-music', 'fa-camera', 'fa-dumbbell', 'fa-bicycle',
+                'fa-plane', 'fa-coffee', 'fa-star', 'fa-paint-brush', 'fa-keyboard', 'fa-feather-alt',
+                'fa-cat', 'fa-dog', 'fa-tree', 'fa-globe', 'fa-chart-line', 'fa-lightbulb',
+                'fa-mug-hot', 'fa-cookie-bite', 'fa-globe-asia', 'fa-robot', 'fa-handshake', 'fa-pizza-slice',
+                'fa-leaf', 'fa-smile', 'fa-compass', 'fa-rocket', 'fa-pencil-alt', 'fa-graduation-cap'
+            ];
+
+
+            // Icon Picker Modal
+            const iconPickerModal = document.getElementById('iconPickerModal');
+            const closeIconPickerBtn = iconPickerModal.querySelector('.close-button');
+            const iconSearchInput = document.getElementById('iconSearchInput');
+            const iconGrid = document.getElementById('iconGrid');
+
+            function populateIconGrid(filter = '') {
+                iconGrid.innerHTML = '';
+                const filteredIcons = commonIcons.filter(icon => icon.includes(filter.toLowerCase()));
+                if (filteredIcons.length === 0 && filter) {
+                    iconGrid.innerHTML = '<p style="text-align: center; color: var(--text-dark);">Không tìm thấy icon phù hợp.</p>';
+                    return;
+                }
+                filteredIcons.forEach(iconClass => {
+                    const iconDiv = document.createElement('div');
+                    iconDiv.classList.add('icon-item');
+                    iconDiv.innerHTML = `<i class="fas ${iconClass}"></i>`;
+                    iconDiv.addEventListener('click', () => {
+                        selectedIconClass = `fas ${iconClass}`;
+                        if (currentEditingHobbyElement) { // If editing an existing hobby icon
+                            // Ensure the existing class list for the <i> tag is correct
+                            const iconElement = currentEditingHobbyElement;
+                            const currentClasses = Array.from(iconElement.classList);
+                            const faPrefix = currentClasses.find(cls => cls.startsWith('fa-'));
+                            if (faPrefix) {
+                                iconElement.classList.remove(faPrefix);
+                            }
+                            iconElement.classList.add(iconClass); // Add new icon class
+                        } else { // If selecting icon for new hobby
+                            selectHobbyIconBtn.innerHTML = `<i class="${selectedIconClass}"></i> Chọn Icon`;
+                        }
+                        iconPickerModal.style.display = 'none';
+                    });
+                    iconGrid.appendChild(iconDiv);
+                });
+            }
+
+            closeIconPickerBtn.addEventListener('click', () => {
+                iconPickerModal.style.display = 'none';
+            });
+
+            iconSearchInput.addEventListener('input', (e) => {
+                populateIconGrid(e.target.value);
+            });
+
+            selectHobbyIconBtn.addEventListener('click', () => {
+                currentEditingHobbyElement = null; // Ensure this is for new hobby icon
+                populateIconGrid();
+                iconPickerModal.style.display = 'block';
+            });
+
+            // General function to open Hobby Edit Modal
+            document.querySelector('.edit-hobbies-btn').addEventListener('click', openHobbyEditModal);
+
+            function openHobbyEditModal() {
+                hobbyEditModal.style.display = 'block';
+                loadHobbiesForEditing();
+            }
+
+            closeHobbyModalBtn.addEventListener('click', () => {
+                hobbyEditModal.style.display = 'none';
+                resetHobbyEditState();
+            });
+
+            cancelHobbyEditBtn.addEventListener('click', () => {
+                hobbyEditModal.style.display = 'none';
+                // Revert to original hobbies if cancelled
+                const originalHData = originalContents.get(hobbiesGrid.id); // Get original data for hobbies
+                if (originalHData) {
+                    hobbiesGrid.innerHTML = ''; // Clear current
+                    originalHData.forEach(hobby => {
+                        const hobbyItem = document.createElement('div');
+                        hobbyItem.classList.add('hobby-item');
+                        hobbyItem.innerHTML = `
+                            <i class="${hobby.icon} icon-medium"></i>
+                            <p>${hobby.text}</p>
+                        `;
+                        hobbiesGrid.appendChild(hobbyItem);
+                    });
+                }
+                resetHobbyEditState();
+            });
+
+            function loadHobbiesForEditing() {
+                editableHobbiesList.innerHTML = '';
+                const currentHobbies = Array.from(hobbiesGrid.children).map(item => ({
+                    icon: item.querySelector('i').className,
+                    text: item.querySelector('p').textContent
+                }));
+                
+                // Store a deep copy of current hobbies for cancellation
+                originalContents.set(hobbiesGrid.id, JSON.parse(JSON.stringify(currentHobbies))); // Store by ID for global cancel
+
+                currentHobbies.forEach((hobby, index) => {
+                    const editableItem = document.createElement('div');
+                    editableItem.classList.add('editable-hobby-item');
+                    editableItem.dataset.index = index; // Store original index
+
+                    editableItem.innerHTML = `
+                        <i class="${hobby.icon}"></i>
+                        <input type="text" class="hobby-text-input editable-field" value="${hobby.text}">
+                        <button class="change-icon-btn"><i class="fas fa-sync-alt"></i></button>
+                        <button class="delete-hobby-btn"><i class="fas fa-trash-alt"></i></button>
+                    `;
+                    editableHobbiesList.appendChild(editableItem);
+                });
+
+                attachHobbyEditListeners();
+            }
+
+            function attachHobbyEditListeners() {
+                editableHobbiesList.querySelectorAll('.change-icon-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        currentEditingHobbyElement = this.previousElementSibling.previousElementSibling; // The <i> tag
+                        populateIconGrid();
+                        iconPickerModal.style.display = 'block';
+                    });
+                });
+
+                editableHobbiesList.querySelectorAll('.delete-hobby-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        this.closest('.editable-hobby-item').remove();
+                    });
+                });
+            }
+
+            addHobbyBtn.addEventListener('click', () => {
+                const newHobbyName = newHobbyNameInput.value.trim();
+                if (newHobbyName) {
+                    const editableItem = document.createElement('div');
+                    editableItem.classList.add('editable-hobby-item');
+                    editableItem.innerHTML = `
+                        <i class="${selectedIconClass}"></i>
+                        <input type="text" class="hobby-text-input editable-field" value="${newHobbyName}">
+                        <button class="change-icon-btn"><i class="fas fa-sync-alt"></i></button>
+                        <button class="delete-hobby-btn"><i class="fas fa-trash-alt"></i></button>
+                    `;
+                    editableHobbiesList.appendChild(editableItem);
+                    newHobbyNameInput.value = '';
+                    selectedIconClass = 'fas fa-question'; // Reset default icon
+                    selectHobbyIconBtn.innerHTML = '<i class="fas fa-icons"></i> Chọn Icon'; // Reset button text
+                    attachHobbyEditListeners(); // Re-attach listeners for new item
+                }
+            });
+
+            saveHobbiesBtn.addEventListener('click', () => {
+                const updatedHobbies = [];
+                editableHobbiesList.querySelectorAll('.editable-hobby-item').forEach(item => {
+                    const icon = item.querySelector('i').className;
+                    const text = item.querySelector('.hobby-text-input').value;
+                    if (text.trim()) { // Only save if text is not empty
+                        updatedHobbies.push({ icon, text });
+                    }
+                });
+
+                hobbiesGrid.innerHTML = ''; // Clear current hobbies
+                updatedHobbies.forEach(hobby => {
+                    const hobbyItem = document.createElement('div');
+                    hobbyItem.classList.add('hobby-item');
+                    hobbyItem.innerHTML = `
+                        <i class="${hobby.icon} icon-medium"></i>
+                        <p>${hobby.text}</p>
+                    `;
+                    hobbiesGrid.appendChild(hobbyItem);
+                });
+
+                hobbyEditModal.style.display = 'none';
+                resetHobbyEditState();
+            });
+
+            function resetHobbyEditState() {
+                newHobbyNameInput.value = '';
+                selectedIconClass = 'fas fa-question';
+                selectHobbyIconBtn.innerHTML = '<i class="fas fa-icons"></i> Chọn Icon';
+                currentEditingHobbyElement = null;
+                editableHobbiesList.innerHTML = '';
+            }
+
+
+            // --- PROJECT EDITING LOGIC (Accessed via modal now) ---
+            const projectEditModal = document.getElementById('projectEditModal');
+            const closeProjectModalBtn = projectEditModal.querySelector('.close-button');
+            const editableProjectsList = document.getElementById('editableProjectsList');
+            const addNewProjectBtn = document.getElementById('addNewProjectBtn');
+            const saveProjectsBtn = document.getElementById('saveProjectsBtn');
+            const cancelProjectEditBtn = document.getElementById('cancelProjectEditBtn');
+            const projectGrid = document.querySelector('#experience .project-grid');
+
+            let projectIdCounter = projectGrid.children.length; // Start counter for new projects
+
+            // Open Project Edit Modal
+            document.querySelector('.add-project-btn').addEventListener('click', openProjectEditModal);
+
+            function openProjectEditModal() {
+                projectEditModal.style.display = 'block';
+                loadProjectsForEditing();
+            }
+
+            closeProjectModalBtn.addEventListener('click', () => {
+                projectEditModal.style.display = 'none';
+                resetProjectEditState();
+            });
+
+            cancelProjectEditBtn.addEventListener('click', () => {
+                projectEditModal.style.display = 'none';
+                // Revert to original projects if cancelled
+                const originalPData = originalContents.get(projectGrid.id);
+                if (originalPData) {
+                    projectGrid.innerHTML = ''; // Clear current
+                    originalPData.forEach(proj => {
+                        const projectItem = createProjectElement(proj);
+                        projectGrid.appendChild(projectItem);
+                    });
+                }
+                resetProjectEditState();
+            });
+
+            function loadProjectsForEditing() {
+                editableProjectsList.innerHTML = '';
+                const currentProjects = Array.from(projectGrid.children).map(item => {
+                    const techStack = Array.from(item.querySelectorAll('.project-tech-stack li'))
+                                          .map(li => li.textContent);
+                    return {
+                        id: item.dataset.projectId,
+                        title: item.querySelector('h3').textContent,
+                        role: item.querySelector('.project-role').textContent,
+                        description: item.querySelector('.project-description').textContent,
+                        techStack: techStack,
+                        link: item.querySelector('.btn-project') ? item.querySelector('.btn-project').href : ''
+                    };
+                });
+                
+                originalContents.set(projectGrid.id, JSON.parse(JSON.stringify(currentProjects)));
+
+                currentProjects.forEach((proj, index) => {
+                    const editableItem = createEditableProjectItem(proj, index);
+                    editableProjectsList.appendChild(editableItem);
+                });
+                attachProjectEditListeners();
+            }
+
+            function createEditableProjectItem(proj, index) {
+                const editableItem = document.createElement('div');
+                editableItem.classList.add('editable-project-item');
+                editableItem.dataset.index = index;
+                editableItem.dataset.projectId = proj.id;
+
+                editableItem.innerHTML = `
+                    <div class="project-header-edit">
+                        <input type="text" class="project-title-input editable-field" value="${proj.title.replace('Dự án: ', '')}" placeholder="Tên dự án">
+                        <button class="delete-project-btn"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                    <input type="text" class="project-role-input editable-field" value="${proj.role}" placeholder="Vai trò của bạn">
+                    <textarea class="project-description-input editable-field" placeholder="Mô tả dự án">${proj.description}</textarea>
+                    <div class="project-tech-stack-edit-wrapper">
+                        <ul class="project-tech-stack-edit-list">
+                            ${proj.techStack.map(tech => `<li class="editable-field">${tech}<button class="delete-tech-btn"><i class="fas fa-trash-alt"></i></button></li>`).join('')}
+                        </ul>
+                        <div class="add-new-item add-tech-item">
+                            <input type="text" class="new-tech-input" placeholder="Thêm công nghệ/kỹ năng">
+                            <button class="add-tech-btn add-item-btn"><i class="fas fa-plus"></i> Thêm</button>
+                        </div>
+                    </div>
+                    <input type="text" class="project-link-input editable-field" value="${proj.link}" placeholder="Link GitHub/Demo (URL)">
+                `;
+                return editableItem;
+            }
+
+            function attachProjectEditListeners() {
+                editableProjectsList.querySelectorAll('.delete-project-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        this.closest('.editable-project-item').remove();
+                    });
+                });
+
+                editableProjectsList.querySelectorAll('.add-tech-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const techInput = this.previousElementSibling;
+                        const techText = techInput.value.trim();
+                        if (techText) {
+                            const techList = this.closest('.project-tech-stack-edit-wrapper').querySelector('.project-tech-stack-edit-list');
+                            const newLi = document.createElement('li');
+                            newLi.classList.add('editable-field');
+                            newLi.innerHTML = `${techText}<button class="delete-tech-btn"><i class="fas fa-trash-alt"></i></button>`;
+                            techList.appendChild(newLi);
+                            newLi.querySelector('.delete-tech-btn').addEventListener('click', function() {
+                                newLi.remove();
+                            });
+                            techInput.value = '';
+                        }
+                    });
+                });
+
+                editableProjectsList.querySelectorAll('.delete-tech-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        this.closest('li').remove();
+                    });
+                });
+            }
+
+            addNewProjectBtn.addEventListener('click', () => {
+                projectIdCounter++;
+                const newProject = {
+                    id: `new-proj-${projectIdCounter}`,
+                    title: 'Dự án Mới',
+                    role: 'Vai trò mới',
+                    description: 'Mô tả dự án mới của bạn.',
+                    techStack: [],
+                    link: ''
+                };
+                const editableItem = createEditableProjectItem(newProject, editableProjectsList.children.length);
+                editableProjectsList.appendChild(editableItem);
+                attachProjectEditListeners();
+            });
+
+            saveProjectsBtn.addEventListener('click', () => {
+                const updatedProjects = [];
+                editableProjectsList.querySelectorAll('.editable-project-item').forEach(item => {
+                    const title = item.querySelector('.project-title-input').value.trim();
+                    const role = item.querySelector('.project-role-input').value.trim();
+                    const description = item.querySelector('.project-description-input').value.trim();
+                    const techStack = Array.from(item.querySelectorAll('.project-tech-stack-edit-list li'))
+                                          .map(li => li.textContent.replace(/\s*$/, '')); // Remove trailing space from delete button
+                    const link = item.querySelector('.project-link-input').value.trim();
+
+                    if (title) { // Only save if title is not empty
+                        updatedProjects.push({ title, role, description, techStack, link });
+                    }
+                });
+
+                projectGrid.innerHTML = '';
+                updatedProjects.forEach((proj, index) => {
+                    const projectItem = createProjectElement(proj, `proj-${index + 1}`); // Re-assign IDs for consistency
+                    projectGrid.appendChild(projectItem);
+                });
+
+                projectEditModal.style.display = 'none';
+                resetProjectEditState();
+            });
+
+            function createProjectElement(projData, id) {
+                const projectItem = document.createElement('div');
+                projectItem.classList.add('project-item');
+                projectItem.dataset.projectId = id;
+                projectItem.innerHTML = `
+                    <h3 data-field="project-title">Dự án: ${projData.title}</h3>
+                    <p class="project-role" data-field="project-role">${projData.role}</p>
+                    <p class="project-description" data-field="project-description">${projData.description}</p>
+                    <ul class="project-tech-stack" data-field="project-tech-stack">
+                        ${projData.techStack.map(tech => `<li data-field="tech">${tech}</li>`).join('')}
+                    </ul>
+                    <a href="${projData.link}" target="_blank" class="btn-project">Xem dự án <i class="fas fa-external-link-alt"></i></a>
+                `;
+                return projectItem;
+            }
+
+            function resetProjectEditState() {
+                editableProjectsList.innerHTML = '';
+            }
+            document.querySelector('.add-contact-btn').addEventListener('click', () => {
+                alert('Tính năng "Thêm Liên hệ" cần một modal chỉnh sửa riêng biệt, tương tự như Sở thích hoặc Dự án, để quản lý icon và link. Hiện tại, bạn có thể chỉnh sửa các liên hệ có sẵn trong chế độ chỉnh sửa toàn cục.');
+            });
+        });
+    </script>
+    <script src="assets/js/bao.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+/*======== Định dạng cho Phần Chân trang (Footer Section) ========*/
+
+/* Các kiểu cơ bản cho chân trang */
+.footer {
+    background-color: var(--sidebar-color);
+    padding: 25px 0;
+    text-align: center;
+    position: relative;
+    left: 250px;
+    width: calc(100% - 250px);
+    transition: var(--tran-05); /* Chuyển động mượt mà khi sidebar thay đổi */
+    border-top: 1px solid var(--primary-color-light);
+    box-sizing: border-box;
+}
+
+/* Điều chỉnh vị trí chân trang khi sidebar đóng */
+.sidebar.close ~ .footer {
+    left: 88px;
+    width: calc(100% - 88px);
+}
+
+/* Khung chứa nội dung chân trang */
+.footer-content {
+    max-width: 1100px; /* Giữ chiều rộng tương tự các section khác */
+    margin: 0 auto; /* Căn giữa nội dung */
+    padding: 0 20px;
+}
+
+/* Kiểu dáng cho khung chứa các liên kết mạng xã hội */
+.footer-social-links {
+    display: flex;
+    justify-content: center; /* Căn giữa các icon */
+    align-items: center;
+    gap: 35px; /* Khoảng cách giữa các icon */
+    margin-bottom: 20px; /* Khoảng cách với dòng bản quyền */
+}
+
+/* Kiểu dáng cho từng liên kết mạng xã hội (icon) */
+.footer-social-links a {
+    color: var(--text-color);
+    font-size: 2rem; /* Kích thước icon */
+    transition: color var(--tran-03), transform var(--tran-04);
+    position: relative; /* Cần cho tooltip */
+    display: inline-block;
+    text-decoration: none; /* Bỏ gạch chân */
+}
+
+/* Hiệu ứng khi di chuột qua liên kết mạng xã hội */
+.footer-social-links a:hover {
+    transform: translateY(-8px); /* Hiệu ứng nâng lên khi hover */
+}
+
+/* Hiệu ứng màu riêng cho từng icon khi hover */
+.footer-social-links a.facebook-icon:hover {
+    color: #1877f3;
+}
+
+.footer-social-links a.tiktok-icon:hover {
+    color: #000000;
+}
+
+.footer-social-links a.github-icon:hover {
+    color: #980ead;
+}
+
+/* Kiểu dáng cho tooltip của liên kết mạng xã hội */
+.footer-social-links a::after {
+    content: attr(title); /* Lấy nội dung từ thuộc tính title */
+    position: absolute;
+    bottom: 130%; /* Vị trí tooltip so với icon */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--text-color);
+    color: var(--sidebar-color);
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    white-space: nowrap; /* Đảm bảo tên hiển thị trên một dòng */
+    z-index: 10; /* Đảm bảo tooltip nổi lên trên các phần tử khác */
+    opacity: 0; /* Mặc định ẩn tooltip */
+    visibility: hidden;
+    pointer-events: none; /* Tooltip không bắt sự kiện chuột */
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+/* Hiện tooltip khi di chuột qua */
+.footer-social-links a:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Kiểu dáng cho dòng bản quyền */
+.footer-copyright {
+    font-size: 0.9rem;
+    opacity: 0.7; /* Làm cho chữ nhẹ nhàng hơn một chút */
+    margin: 0;
+    color: var(--text-color); /* Đảm bảo màu chữ thích hợp cho cả light/dark mode */
+}
+
+/*======== Điều chỉnh cho Dark Mode ========*/
+body.dark .footer {
+    background-color: var(--sidebar-color);
+    color: var(--text-color);
+    border-top: 1px solid var(--primary-color-light);
+}
+
+body.dark .footer-social-links a {
+    color: var(--text-color); /* Đảm bảo màu icon vẫn đúng trong dark mode */
+}
+
+/* Hiệu ứng tooltip trong Dark Mode */
+body.dark .footer-social-links a::after {
+    background-color: var(--toggle-color);
+    color: var(--body-color);
+    box-shadow: 0 2px 8px rgba(255,255,255,0.1);
+}

@@ -1,0 +1,416 @@
+/*======== Định dạng cho Phần "Cài đặt" (Setting Section) ========*/
+
+/* Các kiểu cơ bản cho phần Cài đặt */
+.setting-section {
+    position: relative; /* */
+    left: 250px; /* */
+    min-height: 100vh; /* */
+    width: calc(100% - 250px); /* */
+    background: var(--body-color); /* */
+    display: flex; /* */
+    flex-direction: column; /* */
+    align-items: center; /* */
+    justify-content: flex-start; /* */
+    padding: 48px 0 32px 0; /* */
+    box-sizing: border-box; /* */
+    margin-bottom: 100px; /* */
+    transition: var(--tran-05); /* */
+}
+
+/* Điều chỉnh vị trí phần Cài đặt khi sidebar đóng */
+.sidebar.close ~ .setting-section {
+    left: 88px; /* */
+    width: calc(100% - 88px); /* */
+}
+
+/* Kiểu dáng cho khối chứa nội dung cài đặt chính */
+.setting-block {
+    width: 100%; /* */
+    max-width: 1100px; /* */
+    margin: 0 auto 32px auto; /* */
+    background: var(--sidebar-color); /* */
+    border-radius: 18px; /* */
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.10); /* */
+    padding: 32px 40px; /* */
+}
+
+/* Kiểu dáng cho hàng tiêu đề (tiêu đề và đường gạch chân) */
+.setting-title-row {
+    display: flex; /* */
+    align-items: center; /* */
+    width: 100%; /* */
+    margin-bottom: 28px; /* */
+}
+
+/* Kiểu dáng cho tiêu đề */
+.setting-title {
+    font-size: 2rem; /* */
+    font-weight: 700; /* */
+    color: var(--text-color); /* */
+    margin: 0; /* */
+}
+
+/* Kiểu dáng cho đường gạch chân tiêu đề */
+.setting-title-underline {
+    flex: 1; /* */
+    height: 2.5px; /* */
+    background: var(--primary-color); /* */
+    border-radius: 2px; /* */
+    display: inline-block; /* */
+    margin-left: 12px; /* */
+}
+
+/* Bố cục lưới cho các thẻ cài đặt */
+.settings-container {
+    display: grid; /* */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* */
+    gap: 24px; /* */
+}
+
+/* Kiểu dáng cho từng thẻ cài đặt */
+.setting-card {
+    background: var(--body-color); /* */
+    border-radius: 12px; /* */
+    padding: 20px; /* */
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08); /* */
+}
+
+/* Kiểu dáng cho tiêu đề phụ trong thẻ cài đặt */
+.setting-subtitle {
+    color: var(--primary-color); /* */
+    font-size: 1.2rem; /* */
+    margin-bottom: 16px; /* */
+    padding-bottom: 8px; /* */
+    border-bottom: 1px solid var(--primary-color-light); /* */
+}
+
+/* Kiểu dáng cho nhóm cài đặt (ví dụ: một form group) */
+.setting-group {
+    margin-bottom: 20px; /* */
+}
+
+/* Kiểu dáng cho nhãn của input/textarea */
+.setting-label {
+    display: block; /* */
+    margin-bottom: 8px; /* */
+    color: var(--text-color); /* */
+    font-weight: 500; /* */
+}
+
+/* Kiểu dáng chung cho các input và textarea */
+.setting-input,
+.setting-textarea,
+.form-input,
+.form-textarea {
+    width: 100%; /* */
+    padding: 10px 14px; /* */
+    border: 1px solid var(--primary-color-light); /* */
+    border-radius: 6px; /* */
+    background: var(--sidebar-color); /* */
+    color: var(--text-color); /* */
+    font-size: 1rem; /* */
+    transition: var(--tran-03); /* */
+    box-sizing: border-box; /* */
+    outline: none; /* */
+}
+
+/* Chiều cao tối thiểu cho textarea và khả năng kéo dãn */
+.setting-textarea,
+.form-textarea {
+    min-height: 100px; /* */
+    resize: vertical; /* */
+}
+
+/* Hiệu ứng khi input/textarea được focus */
+.setting-input:focus,
+.setting-textarea:focus,
+.form-input:focus,
+.form-textarea:focus {
+    border-color: var(--primary-color); /* */
+    outline: none; /* */
+    box-shadow: 0 0 0 2px rgba(105, 92, 254, 0.2); /* */
+}
+
+/* Kiểu dáng cho nút "Cập nhật" */
+.setting-btn {
+    background: var(--primary-color); /* */
+    color: white; /* */
+    border: none; /* */
+    padding: 10px 20px; /* */
+    border-radius: 6px; /* */
+    cursor: pointer; /* */
+    font-weight: 500; /* */
+    transition: var(--tran-03); /* */
+    margin-top: 10px; /* */
+}
+
+/* Hiệu ứng khi di chuột qua nút "Cập nhật" */
+.setting-btn:hover {
+    background: #5a4fe0; /* */
+    transform: translateY(-2px); /* */
+}
+
+/* Kiểu dáng cho nút nguy hiểm (ví dụ: xóa) */
+.setting-btn.danger {
+    background: #e74c3c; /* */
+}
+
+/* Hiệu ứng khi di chuột qua nút nguy hiểm */
+.setting-btn.danger:hover {
+    background: #c0392b; /* */
+}
+
+/* Kiểu dáng cho phần tải ảnh dự án lên */
+.project-image-upload {
+    display: flex; /* */
+    flex-direction: column; /* */
+    gap: 10px; /* */
+    margin-top: 15px; /* */
+}
+
+/* Kiểu dáng cho xem trước ảnh dự án */
+.project-image-preview {
+    width: 100%; /* */
+    max-height: 200px; /* */
+    object-fit: contain; /* */
+    border-radius: 8px; /* */
+    border: 1px dashed var(--primary-color-light); /* */
+    display: none; /* */
+}
+
+/* Kiểu dáng cho từng mục kỹ năng */
+.skill-item {
+    display: flex; /* */
+    align-items: center; /* */
+    gap: 10px; /* */
+    margin-bottom: 10px; /* */
+}
+
+/* Input text trong mục kỹ năng */
+.skill-item input {
+    flex: 1; /* */
+}
+
+/* Nút xóa kỹ năng */
+.remove-skill {
+    color: #e74c3c; /* */
+    cursor: pointer; /* */
+    font-size: 1.2rem; /* */
+}
+
+/* Nút thêm kỹ năng */
+.add-skill-btn {
+    background: var(--primary-color-light); /* */
+    color: var(--primary-color); /* */
+    border: none; /* */
+    padding: 8px 12px; /* */
+    border-radius: 6px; /* */
+    cursor: pointer; /* */
+    display: flex; /* */
+    align-items: center; /* */
+    gap: 5px; /* */
+    margin-top: 10px; /* */
+    transition: var(--tran-03); /* */
+}
+
+/* Hiệu ứng khi di chuột qua nút thêm kỹ năng */
+.add-skill-btn:hover {
+    background: var(--primary-color); /* */
+    color: white; /* */
+}
+
+/* Kiểu dáng cho các tab cài đặt */
+.setting-tabs {
+    display: flex; /* */
+    gap: 10px; /* */
+    margin-bottom: 20px; /* */
+    border-bottom: 1px solid var(--primary-color-light); /* */
+    padding-bottom: 10px; /* */
+}
+
+/* Kiểu dáng cho từng tab cài đặt */
+.setting-tab {
+    padding: 8px 16px; /* */
+    background: var(--primary-color-light); /* */
+    color: var(--text-color); /* */
+    border: none; /* */
+    border-radius: 6px; /* */
+    cursor: pointer; /* */
+    transition: var(--tran-03); /* */
+}
+
+/* Kiểu dáng cho tab active */
+.setting-tab.active {
+    background: var(--primary-color); /* */
+    color: white; /* */
+}
+
+/* Nội dung của tab (mặc định ẩn) */
+.setting-tab-content {
+    display: none; /* */
+}
+
+/* Nội dung của tab active (hiển thị) */
+.setting-tab-content.active {
+    display: block; /* */
+}
+
+/* Danh sách dự án trong cài đặt */
+.project-list {
+    display: flex; /* */
+    flex-direction: column; /* */
+    gap: 15px; /* */
+    margin-bottom: 20px; /* */
+}
+
+/* Từng mục dự án trong danh sách */
+.project-item {
+    background: var(--sidebar-color); /* */
+    padding: 15px; /* */
+    border-radius: 8px; /* */
+    border: 1px solid var(--primary-color-light); /* */
+}
+
+/* Danh mục kỹ năng */
+.skill-category {
+    margin-bottom: 25px; /* */
+}
+
+/* Tiêu đề danh mục kỹ năng */
+.skill-category-title {
+    color: var(--primary-color); /* */
+    margin-bottom: 10px; /* */
+    font-weight: 600; /* */
+}
+
+/* Các nút hành động cho dự án (chỉnh sửa, xóa) */
+.project-actions {
+    display: flex; /* */
+    gap: 10px; /* */
+    margin-top: 10px; /* */
+}
+
+/* Các nút hành động chiếm không gian bằng nhau */
+.project-actions button {
+    flex: 1; /* */
+}
+
+/* Khung chứa xem trước ảnh */
+.image-preview-container {
+    margin-top: 10px; /* */
+    text-align: center; /* */
+}
+
+/* Xem trước ảnh */
+.image-preview {
+    max-width: 100%; /* */
+    max-height: 150px; /* */
+    border-radius: 8px; /* */
+    border: 1px dashed var(--primary-color-light); /* */
+    display: none; /* */
+}
+
+/* Các hàng trong form */
+.form-row {
+    display: flex; /* */
+    gap: 15px; /* */
+    margin-bottom: 15px; /* */
+}
+
+/* Nhóm form */
+.form-group {
+    flex: 1; /* */
+}
+
+/* Nhãn trong nhóm form */
+.form-group label {
+    display: block; /* */
+    margin-bottom: 5px; /* */
+    color: var(--text-color); /* */
+}
+
+/* Kiểu dáng chung cho các nút */
+.btn {
+    padding: 8px 16px; /* */
+    border-radius: 6px; /* */
+    border: none; /* */
+    cursor: pointer; /* */
+    transition: var(--tran-03); /* */
+    font-weight: 500; /* */
+}
+
+/* Nút màu chính */
+.btn-primary {
+    background: var(--primary-color); /* */
+    color: white; /* */
+}
+
+/* Hiệu ứng hover cho nút màu chính */
+.btn-primary:hover {
+    background: #5a4fe0; /* */
+}
+
+/* Nút màu nguy hiểm */
+.btn-danger {
+    background: #e74c3c; /* */
+    color: white; /* */
+}
+
+/* Hiệu ứng hover cho nút màu nguy hiểm */
+.btn-danger:hover {
+    background: #c0392b; /* */
+}
+
+/* Nút màu thành công */
+.btn-success {
+    background: #2ecc71; /* */
+    color: white; /* */
+}
+
+/* Hiệu ứng hover cho nút màu thành công */
+.btn-success:hover {
+    background: #27ae60; /* */
+}
+
+/* Nút chọn màu sắc cho kỹ năng */
+.skill-item input[type="color"] {
+    flex: 0 0 40px; /* */
+    width: 40px; /* */
+    height: 40px; /* */
+    border: none; /* */
+    padding: 0; /* */
+    border-radius: 8px; /* */
+    overflow: hidden; /* */
+    cursor: pointer; /* */
+    background-color: transparent; /* */
+    box-shadow: 0 0 0 2px var(--primary-color-light), 0 2px 6px rgba(0,0,0,0.1); /* */
+    transition: box-shadow 0.3s ease; /* */
+}
+
+/* Tùy chỉnh swatch của input[type="color"] cho Webkit */
+.skill-item input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0; /* */
+}
+
+.skill-item input[type="color"]::-webkit-color-swatch {
+    border: none; /* */
+    border-radius: 8px; /* */
+}
+
+/* Hiệu ứng hover cho nút chọn màu */
+.skill-item input[type="color"]:hover {
+    box-shadow: 0 0 0 2px var(--primary-color), 0 4px 12px rgba(0,0,0,0.2); /* */
+}
+
+/*======== Media Queries: Điều chỉnh cho màn hình nhỏ hơn 768px ========*/
+@media (max-width: 768px) {
+    .setting-block {
+        padding: 24px 20px; /* */
+    }
+
+    .settings-container {
+        grid-template-columns: 1fr; /* */
+    }
+}
+
+

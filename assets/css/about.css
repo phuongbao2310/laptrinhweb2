@@ -1,0 +1,232 @@
+/*======== Định dạng cho Phần "Giới thiệu" (About Section) ========*/
+
+/* Các kiểu cơ bản cho phần Giới thiệu */
+.about-section { /* Vị trí, kích thước, màu nền và căn chỉnh chung */
+    position: relative;
+    left: 250px;
+    min-height: 100vh;
+    width: calc(100% - 250px);
+    background: var(--body-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 48px 0 32px 0;
+    box-sizing: border-box;
+    margin-bottom: 100px;
+    transition: var(--tran-05); /* Chuyển động mượt mà khi sidebar thay đổi */
+}
+
+/* Điều chỉnh vị trí phần Giới thiệu khi sidebar đóng */
+.sidebar.close ~ .about-section {
+    left: 88px;
+    width: calc(100% - 88px);
+}
+
+/* Kiểu dáng cho khối thông tin "Về tôi" (About Me) */
+.about-block {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 32px auto;
+    background: var(--sidebar-color);
+    border-radius: 18px;
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.10);
+    padding: 32px 40px;
+}
+
+/* Kiểu dáng cho tiêu đề các phần */
+.about-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Kiểu dáng cho đường gạch chân tiêu đề */
+.about-title-underline {
+    flex: 1;
+    height: 2.5px;
+    background: var(--primary-color);
+    border-radius: 2px;
+    display: inline-block;
+    margin-left: 12px;
+}
+
+/* Bố cục cho nội dung chính "Về tôi" (ảnh đại diện và thông tin) */
+.about-main {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Kiểu dáng cho khung ảnh đại diện lớn */
+.about-avatar-large {
+    flex: 0 0 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Kiểu dáng cho ảnh đại diện lớn */
+.about-avatar-large img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    background: var(--primary-color-light);
+    box-shadow: 0 0 24px 0 var(--primary-color-light);
+}
+
+/* Kiểu dáng cho đoạn văn mô tả bản thân */
+.about-info {
+    flex: 1 1 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Kiểu dáng chung cho các thẻ trong phần Giới thiệu (hiện trong suốt) */
+.about-card {
+    background: transparent;
+    border-radius: 12px;
+    padding: 0;
+}
+
+/* Kiểu dáng cho khối chứa phần Kỹ năng */
+.about-skills {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    margin-top: 32px;
+    background: var(--sidebar-color);
+    border-radius: 18px;
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.10);
+    padding: 32px 40px;
+}
+
+/* Kiểu dáng cho khung chứa các nút tab kỹ năng */
+.skills-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+/* Kiểu dáng cho từng nút tab kỹ năng */
+.skills-tab {
+    background: var(--primary-color-light);
+    color: var(--text-color);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--tran-03);
+}
+
+/* Trạng thái hoạt động và khi di chuột qua cho nút tab kỹ năng */
+.skills-tab.active,
+.skills-tab:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* Kiểu cơ bản cho danh sách kỹ năng (mặc định ẩn) */
+.skills-list {
+    display: none; /* Mặc định ẩn */
+}
+
+/* Kiểu dáng cho danh sách kỹ năng hiển thị dưới dạng lưới, với trạng thái ẩn ban đầu */
+.skills-list.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    opacity: 0; /* Ban đầu ẩn */
+    visibility: hidden; /* Ban đầu ẩn */
+    transform: translateY(20px); /* Dịch chuyển xuống một chút */
+    transition: opacity 0.4s ease-out, visibility 0.4s ease-out, transform 0.4s ease-out;
+    position: absolute; /* Đặt chồng lên các tab */
+    width: calc(100% - 80px); /* Điều chỉnh chiều rộng cho phần đệm */
+    max-width: calc(1100px - 80px);
+}
+
+/* Trạng thái hoạt động của lưới kỹ năng, hiển thị và về vị trí ban đầu */
+.skills-list.skills-grid.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Trở về vị trí ban đầu */
+    position: relative; /* Chiếm không gian trong luồng tài liệu */
+}
+
+/* Hiển thị danh sách kỹ năng dưới dạng flex khi hoạt động */
+.skills-list.active {
+    display: flex;
+}
+
+/* Kiểu dáng cho từng thẻ kỹ năng */
+.skill-card {
+    background: var(--body-color);
+    border: 1.5px solid var(--primary-color-light);
+    border-radius: 10px;
+    padding: 18px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+    font-weight: 500;
+    color: var(--text-color);
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.04);
+    gap: 8px;
+    transition:
+        box-shadow 0.3s cubic-bezier(.4,2,.6,1),
+        border-color 0.3s,
+        transform 0.3s ease-out;
+}
+
+/* Hiệu ứng khi di chuột qua thẻ kỹ năng */
+.skill-card:hover {
+    box-shadow: 0 0 24px 4px var(--primary-color), 0 2px 12px 0 rgba(0,0,0,0.10);
+    border-color: var(--primary-color);
+    transform: translateY(-6px) scale(1.05);
+    z-index: 2;
+}
+
+/* Keyframes cho hiệu ứng "nhấp nháy" của thẻ kỹ năng */
+@keyframes skill-card-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.07); }
+    100% { transform: scale(1.05); }
+}
+
+/*======== Media Queries: Điều chỉnh cho màn hình nhỏ hơn 900px ========*/
+@media (max-width: 900px) {
+    .about-section {
+        left: 0;
+        width: 100%;
+        padding: 24px 0;
+    }
+    .about-block, .about-skills {
+        padding: 18px 8px;
+    }
+    .about-main {
+        flex-direction: column;
+        gap: 18px;
+    }
+    .about-avatar-large img {
+        width: 120px;
+        height: 120px;
+    }
+    .about-title {
+        font-size: 1.2rem;
+    }
+    .skills-list.skills-grid {
+        gap: 12px;
+    }
+    .skill-card {
+        min-width: 40px;
+        padding: 8px 8px;
+    }
+}

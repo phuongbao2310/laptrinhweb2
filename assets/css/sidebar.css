@@ -1,0 +1,305 @@
+/*======== Sidebar (Thanh điều hướng bên) ========*/
+.sidebar {
+    position: fixed; /* Giữ sidebar cố định trên màn hình */
+    top: 0; /* Đặt ở cạnh trên cùng */
+    left: 0; /* Đặt ở cạnh trái cùng */
+    height: 100%; /* Chiều cao đầy đủ màn hình */
+    width: 250px; /* Chiều rộng mặc định của sidebar */
+    padding: 10px 14px; /* Khoảng đệm bên trong */
+    background: var(--sidebar-color); /* Màu nền từ biến CSS */
+    transition: var(--tran-05); /* Hiệu ứng chuyển động mượt mà */
+    z-index: 100; /* Đảm bảo sidebar nằm trên các phần tử khác */
+}
+
+/* Điều chỉnh chiều rộng khi sidebar đóng */
+.sidebar.close {
+    width: 88px; /* Chiều rộng khi sidebar đóng */
+}
+
+/*======== Các thành phần có thể tái sử dụng trong Sidebar ========*/
+.sidebar .text {
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: 500; /* Độ đậm chữ */
+    color: var(--text-color); /* Màu chữ từ biến CSS */
+    transition: var(--tran-03); /* Hiệu ứng chuyển màu */
+    white-space: nowrap; /* Ngăn không cho chữ xuống dòng */
+    opacity: 1; /* Hiển thị đầy đủ */
+}
+
+/* Ẩn chữ khi sidebar đóng */
+.sidebar.close .text {
+    opacity: 0; /* Ẩn chữ */
+}
+
+.sidebar .image {
+    min-width: 60px; /* Chiều rộng tối thiểu của ảnh */
+    display: flex; /* Sử dụng flexbox để căn chỉnh */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+}
+
+.sidebar li {
+    height: 50px; /* Chiều cao của mỗi mục danh sách */
+    margin-top: 10px; /* Khoảng cách giữa các mục */
+    list-style: none; /* Bỏ dấu đầu dòng */
+    display: flex; /* Sử dụng flexbox để căn chỉnh */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.sidebar li .icon {
+    display: flex; /* Sử dụng flexbox để căn chỉnh */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    min-width: 60px; /* Chiều rộng tối thiểu của icon */
+    font-size: 20px; /* Kích thước icon */
+}
+
+/* Màu sắc và hiệu ứng chuyển động của icon và chữ */
+.sidebar li .icon,
+.sidebar li .text {
+    color: var(--text-color); /* Màu từ biến CSS */
+    transition: var(--tran-02); /* Hiệu ứng chuyển màu */
+}
+
+/* Phần header của sidebar */
+.sidebar header {
+    position: relative; /* Đặt vị trí tương đối để định vị toggle button */
+}
+
+/* Kích thước và bo góc của ảnh trong header */
+.sidebar .image-text img {
+    width: 40px; /* Chiều rộng ảnh */
+    border-radius: 6px; /* Bo góc ảnh */
+}
+
+/* Căn chỉnh ảnh và chữ trong header */
+.sidebar header .image-text {
+    display: flex; /* Sử dụng flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+/* Căn chỉnh văn bản trong header */
+header .image-text .header-text {
+    display: flex; /* Sử dụng flexbox */
+    flex-direction: column; /* Sắp xếp theo chiều dọc */
+}
+
+/* Kiểu dáng cho tên */
+.header-text .name {
+    font-weight: 600; /* Độ đậm của tên */
+}
+
+/* Kiểu dáng cho nghề nghiệp */
+.header-text .profession {
+    margin-top: -2px; /* Dịch lên trên một chút */
+}
+
+/* Nút gạt mở/đóng sidebar */
+.sidebar header .toggle {
+    position: absolute; /* Vị trí tuyệt đối */
+    top: 50%; /* Căn giữa theo chiều dọc */
+    right: -25px; /* Đặt ở ngoài sidebar */
+    transform: translateY(-50%) rotate(180deg); /* Căn giữa và xoay ban đầu */
+    height: 25px; /* Chiều cao */
+    width: 25px; /* Chiều rộng */
+    background: var(--primary-color); /* Màu nền từ biến CSS */
+    display: flex; /* Sử dụng flexbox để căn chỉnh icon */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    border-radius: 50%; /* Hình tròn */
+    color: var(--sidebar-color); /* Màu icon */
+    font-size: 22px; /* Kích thước icon */
+    transition: var(--tran-03); /* Hiệu ứng chuyển động */
+}
+
+/* Điều chỉnh nút toggle khi sidebar đóng */
+.sidebar.close header .toggle {
+    transform: translateY(-50%); /* Quay trở lại vị trí ban đầu */
+}
+
+/* Điều chỉnh nút toggle trong dark mode */
+body.dark .sidebar header .toggle {
+    transform: rotate(180deg); /* Xoay lại trong dark mode */
+    color: var(--text-color); /* Màu icon trong dark mode */
+}
+
+/* Khung tìm kiếm */
+.sidebar .search-box {
+    background: var(--primary-color-light); /* Màu nền từ biến CSS */
+    border-radius: 6px; /* Bo góc */
+    transition: var(--tran-05); /* Hiệu ứng chuyển động */
+}
+
+/* Input trong khung tìm kiếm */
+.search-box input {
+    height: 100%; /* Chiều cao đầy đủ */
+    width: 100%; /* Chiều rộng đầy đủ */
+    outline: none; /* Bỏ đường viền khi focus */
+    border: none; /* Bỏ viền */
+    border-radius: 6px; /* Bo góc */
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: 500; /* Độ đậm chữ */
+    background: var(--primary-color-light); /* Màu nền từ biến CSS */
+    transition: var(--tran-05); /* Hiệu ứng chuyển động */
+}
+
+/* Kiểu dáng chung cho các liên kết trong sidebar */
+.sidebar li a {
+    height: 100%; /* Chiều cao đầy đủ */
+    width: 100%; /* Chiều rộng đầy đủ */
+    display: flex; /* Sử dụng flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    text-decoration: none; /* Bỏ gạch chân */
+    border-radius: 6px; /* Bo góc */
+    transition: var(--tran-04); /* Hiệu ứng chuyển động */
+}
+
+/* Hiệu ứng khi di chuột qua liên kết */
+.sidebar li a:hover {
+    background: var(--primary-color); /* Đổi màu nền khi hover */
+}
+
+/* Thay đổi màu icon và chữ khi di chuột qua liên kết */
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text {
+    color: var(--sidebar-color); /* Đổi màu sang màu của sidebar */
+}
+
+/* Thay đổi màu icon và chữ khi di chuột qua liên kết trong dark mode */
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text {
+    color: var(--text-color); /* Đổi màu sang màu chữ */
+}
+
+/* Thanh menu */
+.sidebar .menu-bar {
+    height: calc(100% - 50px); /* Chiều cao của thanh menu */
+    display: flex; /* Sử dụng flexbox */
+    flex-direction: column; /* Sắp xếp theo chiều dọc */
+    justify-content: space-between; /* Căn giữa các phần tử và tạo khoảng trống */
+}
+
+/* Nút chuyển đổi chế độ sáng/tối */
+.menu-bar .mode {
+    position: relative; /* Vị trí tương đối */
+    border-radius: 6px; /* Bo góc */
+    background: var(--primary-color-light); /* Màu nền */
+}
+
+/* Icon mặt trăng/mặt trời */
+.menu-bar .mode .moon-sun {
+    height: 50px; /* Chiều cao */
+    width: 60px; /* Chiều rộng */
+    display: flex; /* Sử dụng flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+/* Icon mặt trăng/mặt trời */
+.menu-bar .mode i {
+    position: absolute; /* Vị trí tuyệt đối */
+    transition: var(--tran-03); /* Hiệu ứng chuyển động */
+}
+
+/* Ẩn icon mặt trời ban đầu */
+.menu-bar .mode i.sun {
+    opacity: 0; /* Ẩn */
+}
+
+/* Hiện icon mặt trời trong dark mode */
+body.dark .menu-bar .mode i.sun {
+    opacity: 1; /* Hiện */
+}
+
+/* Ẩn icon mặt trăng trong dark mode */
+body.dark .menu-bar .mode i.moon {
+    opacity: 0; /* Ẩn */
+}
+
+/* Nút gạt chuyển đổi chế độ */
+.menu-bar .mode .toggle-switch {
+    position: absolute; /* Vị trí tuyệt đối */
+    right: 0px; /* Đặt ở bên phải */
+    display: flex; /* Sử dụng flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    height: 100%; /* Chiều cao đầy đủ */
+    min-width: 60px; /* Chiều rộng tối thiểu */
+    cursor: pointer; /* Biểu tượng con trỏ */
+    background: var(--primary-color-light); /* Màu nền */
+    border-radius: 6px; /* Bo góc */
+    transition: var(--tran-05); /* Hiệu ứng chuyển động */
+}
+
+/* Hình tròn gạt */
+.toggle-switch .switch {
+    position: relative; /* Vị trí tương đối */
+    height: 22px; /* Chiều cao */
+    width: 44px; /* Chiều rộng */
+    border-radius: 25px; /* Hình bầu dục */
+    background: var(--toggle-color); /* Màu nền từ biến CSS */
+}
+
+/* Chấm gạt */
+.switch::before {
+    content: ''; /* Nội dung rỗng */
+    position: absolute; /* Vị trí tuyệt đối */
+    height: 15px; /* Chiều cao */
+    width: 15px; /* Chiều rộng */
+    border-radius: 50%; /* Hình tròn */
+    background: var(--sidebar-color); /* Màu nền từ biến CSS */
+    top: 50%; /* Căn giữa theo chiều dọc */
+    left: 5px; /* Khoảng cách từ lề trái */
+    transform: translateY(-50%); /* Căn giữa */
+    transition: var(--tran-03); /* Hiệu ứng chuyển động */
+}
+
+/* Di chuyển chấm gạt sang phải trong dark mode */
+body.dark .switch::before {
+    left: 24px; /* Di chuyển sang phải */
+}
+
+/* Vị trí của các phần tử trong sidebar khi đóng */
+.sidebar.close .search-box input {
+    opacity: 0; /* Ẩn input */
+}
+
+/* Thay đổi màu sắc khi di chuột qua mục menu trong dark mode */
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text {
+    color: var(--text-color); /* Giữ màu chữ */
+}
+
+/* Media Query: Điều chỉnh cho màn hình nhỏ hơn 768px */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px; /* Chiều rộng sidebar cố định nhỏ hơn */
+        padding: 10px 8px; /* Giảm padding */
+    }
+
+    .sidebar.close {
+        width: 80px; /* Giữ nguyên chiều rộng khi đóng */
+    }
+
+    .sidebar .text,
+    .sidebar.close .text {
+        opacity: 0; /* Luôn ẩn chữ */
+    }
+
+    .sidebar li .icon {
+        min-width: 60px; /* Giữ nguyên kích thước icon */
+    }
+
+    .sidebar header .toggle {
+        display: none; /* Ẩn nút toggle */
+    }
+
+    .sidebar ~ .home-section,
+    .sidebar ~ .about-section,
+    .sidebar ~ .project-section,
+    .sidebar ~ .setting-section,
+    .sidebar ~ .contact-section,
+    .sidebar ~ .footer {
+        left: 80px; /* Di chuyển các phần tử khác sang phải theo sidebar */
+        width: calc(100% - 80px); /* Điều chỉnh chiều rộng các phần tử khác */
+    }
+}

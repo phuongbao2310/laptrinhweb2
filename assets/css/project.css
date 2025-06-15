@@ -1,0 +1,249 @@
+/*======== Định dạng cho Phần "Dự án" (Project Section) ========*/
+
+/* Các kiểu cơ bản cho phần Dự án */
+.project-section {
+    position: relative;
+    left: 250px;
+    min-height: 100vh;
+    width: calc(100% - 250px);
+    background: var(--body-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 48px 0 32px 0;
+    box-sizing: border-box;
+    margin-bottom: 100px;
+    transition: var(--tran-05); /* Chuyển động mượt mà khi sidebar thay đổi */
+}
+
+/* Điều chỉnh vị trí phần Dự án khi sidebar đóng */
+.sidebar.close ~ .project-section {
+    left: 88px;
+    width: calc(100% - 88px);
+}
+
+/* Kiểu dáng cho khối chứa nội dung dự án */
+.project-block {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 32px auto;
+    background: var(--sidebar-color);
+    border-radius: 18px;
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.10);
+    padding: 32px 40px;
+}
+
+/* Kiểu dáng cho hàng tiêu đề của dự án (tiêu đề và đường gạch chân) */
+.project-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+/* Kiểu dáng cho tiêu đề dự án */
+.project-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  align-items: center;
+  gap: 12px;
+}
+
+/* Kiểu dáng cho đường gạch chân tiêu đề dự án */
+.project-title-underline {
+    flex: 1;
+    height: 2.5px;
+    background: var(--primary-color);
+    border-radius: 2px;
+    display: inline-block;
+    margin-left: 12px;
+}
+
+/* Kiểu dáng cho đoạn mô tả chung của dự án */
+.project-desc {
+    color: var(--primary-color);
+    font-size: 1.08rem;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 28px;
+    font-weight: 500;
+    opacity: 0.95;
+}
+
+/* Kiểu dáng cho đoạn mô tả chung trong dark mode */
+body.dark .project-desc {
+    color: rgb(151, 151, 58);
+    font-size: 1.08rem;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 32px;
+    font-weight: 500;
+    opacity: 0.95;
+}
+
+/* Bố cục lưới cho các thẻ dự án */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    width: 100%;
+}
+
+/* Kiểu dáng cho từng thẻ dự án */
+.project-card {
+    background: var(--sidebar-color);
+    border-radius: 22px;
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.10);
+    overflow: hidden; /* Đảm bảo hiệu ứng ánh sáng không tràn ra ngoài */
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 260px;
+    padding: 0;
+    border: 1.5px solid var(--primary-color-light);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out, filter 0.3s ease-out;
+    position: relative; /* Quan trọng để định vị pseudo-element */
+    z-index: 1; /* Đảm bảo project card nằm trên các yếu tố khác khi hover */
+}
+
+/* Hiệu ứng khi di chuột qua thẻ dự án */
+.project-card:hover {
+    transform: translateY(-8px) scale(1.04); /* Nhô lên và phóng to hơn một chút */
+    box-shadow: 0 8px 40px 0 rgba(0, 150, 255, 0.4), 0 4px 28px 0 rgba(0,0,0,0.25); /* Đổ bóng nổi bật hơn với màu primary */
+    border-color: var(--primary-color); /* Viền sáng hơn */
+    z-index: 2; /* Đảm bảo nó nổi lên trên các card khác */
+    filter: brightness(1.05); /* Làm sáng tổng thể card khi hover */
+}
+
+/* Hiệu ứng ánh sáng nội bộ khi di chuột qua thẻ dự án */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none; /* Không cản trở sự kiện chuột */
+    border-radius: 22px; /* Đồng bộ với border-radius của card */
+}
+
+/* Hiện hiệu ứng ánh sáng khi di chuột qua thẻ dự án */
+.project-card:hover::before {
+    opacity: 1;
+}
+
+/* Kiểu dáng cho liên kết trong thẻ dự án khi di chuột qua thẻ */
+.project-card:hover .project-links a {
+    color: var(--primary-color); /* Làm màu link nổi bật hơn khi hover card */
+    opacity: 1;
+    transform: scale(1.1); /* Phóng to link một chút */
+}
+
+/* Khung chứa ảnh dự án */
+.project-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    overflow: hidden;
+    height: 200px;
+}
+
+/* Kiểu dáng cho ảnh dự án */
+.project-img img {
+    max-width: 95%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 22px;
+    background: transparent;
+}
+
+/* Khung chứa nội dung văn bản của dự án */
+.project-content {
+    padding: 18px 18px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+/* Kiểu dáng cho tên dự án */
+.project-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+/* Kiểu dáng cho thông tin chi tiết dự án */
+.project-info {
+    color: var(--text-color);
+    opacity: 0.85;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    flex: 1;
+    text-align: left;
+}
+
+/* Kiểu dáng cho phần công nghệ sử dụng trong dự án */
+.project-tech {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 0.98rem;
+    text-align: left;
+}
+
+/* Kiểu dáng cho phần công nghệ sử dụng trong dark mode */
+body.dark .project-tech {
+    color: rgb(142, 182, 245);
+}
+
+/* Khung chứa các liên kết của dự án */
+.project-links {
+    display: flex;
+    gap: 14px;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 8px;
+}
+
+/* Kiểu dáng cho các liên kết của dự án */
+.project-links a {
+    color: var(--text-color);
+    font-size: 1.15rem;
+    transition: color 0.2s;
+    opacity: 0.85;
+}
+
+/* Hiệu ứng khi di chuột qua liên kết dự án */
+.project-links a:hover {
+    color: var(--primary-color);
+    opacity: 1;
+}
+
+/* Ảnh dự án trong dark mode */
+body.dark .project-img {
+    background: var(--sidebar-color);
+}
+
+/*======== Media Queries: Điều chỉnh cho màn hình nhỏ hơn 700px ========*/
+@media (max-width: 700px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .project-card {
+        min-height: 0;
+    }
+}
